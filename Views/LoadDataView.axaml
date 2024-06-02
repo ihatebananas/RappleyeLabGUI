@@ -1,0 +1,126 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:vm="using:RappleyeLabGUI.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="RappleyeLabGUI.Views.LoadDataView"
+			 x:DataType="vm:LoadDataViewModel"
+			 Background="Black">
+	
+	<UserControl.Styles>
+		<Style Selector="Label">
+			<Setter Property="FontFamily" Value="{StaticResource NunitoFont}"></Setter>
+			<Setter Property="Foreground" Value="Black"></Setter>
+		</Style>
+		<Style Selector="Button">
+			<Setter Property="FontFamily" Value="{StaticResource NunitoFont}"></Setter>
+			<Setter Property="CornerRadius" Value="20"></Setter>
+			<Setter Property="Foreground" Value="White"></Setter>
+			<Setter Property="Background" Value="#5783db"></Setter>
+		</Style>
+		<Style Selector="Button:pointerover /template/ ContentPresenter">
+			<Setter Property="FontFamily" Value="{StaticResource NunitoFont}"></Setter>
+			<Setter Property="CornerRadius" Value="20"></Setter>
+			<Setter Property="Foreground" Value="White"></Setter>
+			<Setter Property="Background" Value="Tomato"></Setter>
+		</Style>
+		<Style Selector="Button:pressed /template/ ContentPresenter">
+			<Setter Property="FontFamily" Value="{StaticResource NunitoFont}"></Setter>
+			<Setter Property="CornerRadius" Value="20"></Setter>
+			<Setter Property="Foreground" Value="White"></Setter>
+			<Setter Property="Background" Value="Tomato"></Setter>
+			<Setter Property="Opacity" Value="0.75"></Setter>
+		</Style>
+		<Style Selector="TextBlock">
+			<Setter Property="FontFamily" Value="{StaticResource NunitoFont}"></Setter>
+			<Setter Property="Foreground" Value="Black"></Setter>
+		</Style>
+		<Style Selector="ToggleButton">
+			<Setter Property="FontFamily" Value="{StaticResource NunitoFont}"></Setter>
+			<Setter Property="FontSize" Value="13"></Setter>
+			<Setter Property="Width" Value="100"></Setter>
+			<Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+			<Setter Property="Margin" Value="0, 10, 10, 10"></Setter>
+			<Setter Property="Foreground" Value="Black"></Setter>
+			<Setter Property="Background" Value="Gainsboro"></Setter>
+			<Setter Property="ToolTip.ShowDelay" Value="0"></Setter>
+		</Style>
+		<Style Selector="ToggleButton:pointerover /template/ ContentPresenter">
+			<Setter Property="FontFamily" Value="{StaticResource NunitoFont}"></Setter>
+			<Setter Property="Foreground" Value="Black"></Setter>
+			<Setter Property="Background" Value="#5adbb5"></Setter>
+		</Style>
+		<Style Selector="ToggleButton:pressed /template/ ContentPresenter">
+			<Setter Property="FontFamily" Value="{StaticResource NunitoFont}"></Setter>
+			<Setter Property="Foreground" Value="Black"></Setter>
+			<Setter Property="Background" Value="#5adbb5"></Setter>
+			<Setter Property="Opacity" Value="0.75"></Setter>
+		</Style>
+		<Style Selector="ToggleButton:checked /template/ ContentPresenter">
+			<Setter Property="Background" Value="#c576f6"></Setter>
+			<Setter Property="Foreground" Value="Black"></Setter>
+		</Style>
+		<Style Selector="ToggleButton:checked:pointerover /template/ ContentPresenter">
+			<Setter Property="FontFamily" Value="{StaticResource NunitoFont}"></Setter>
+			<Setter Property="Foreground" Value="Black"></Setter>
+			<Setter Property="Background" Value="#5adbb5"></Setter>
+		</Style>
+		<Style Selector="ToggleButton:disabled /template/ ContentPresenter">
+			<Setter Property="Background" Value="#d7a1f9"></Setter>
+			<Setter Property="Foreground" Value="#3b3b3b"></Setter>
+		</Style>
+		<Style Selector="ToolTip">
+			<Setter Property="Background" Value="#f2f2f2"></Setter>
+		</Style>
+		<Style Selector="DataGrid">
+			<Setter Property="IsReadOnly" Value="True"></Setter>
+			<Setter Property="GridLinesVisibility" Value="All"></Setter>
+			<Setter Property="BorderThickness" Value="1"></Setter>
+			<Setter Property="BorderBrush" Value="White"></Setter>
+			<Setter Property="AutoGenerateColumns" Value="True"></Setter>
+			<Setter Property="Background" Value="White"></Setter>
+			<Setter Property="Foreground" Value="Black"></Setter>
+			<Setter Property="HorizontalGridLinesBrush" Value="Black"></Setter>
+			<Setter Property="VerticalGridLinesBrush" Value="Black"></Setter>
+		</Style>
+		<Style Selector="DataGridColumnHeader">
+			<Setter Property="Background" Value="Gainsboro"></Setter>
+			<Setter Property="Foreground" Value="Black"></Setter>
+			<Setter Property="FontSize" Value="14"></Setter>
+			<Setter Property="AreSeparatorsVisible" Value="True"></Setter>
+		</Style>
+	</UserControl.Styles>
+
+	<Grid RowDefinitions="*, 8*">
+		<Grid Grid.Row="0" Height="50" ColumnDefinitions="*, Auto, Auto" Background="Black">
+			<TextBlock Grid.Column="0" FontSize="20"  VerticalAlignment="Center" Margin="60, 0, 0, 0" Foreground="White">
+				<Run Text="AVALONIA" FontWeight="Black"></Run>
+				<Run Text="SAMPLE GUI" FontWeight="Medium"></Run>
+			</TextBlock>
+			<Button Name="ResetButton" Grid.Column="1" Margin="0, 0, 20, 0" Padding="4, 1">Reset</Button>
+			<Button Name="HelpButton" Grid.Column="2" Margin="0, 0, 20, 0" Padding="4, 1">Help</Button>
+		</Grid>
+		<Grid Grid.Row="1" ColumnDefinitions="*, 3*" Background="Black">
+
+			<Grid Grid.Column="0" RowDefinitions="*, *" Margin="10, 0, 10, 0" VerticalAlignment="Center">
+				<Grid Grid.Row="0" Background="Gainsboro" RowDefinitions="Auto, *, Auto" Margin="0, 0, 0, 10">
+					<TextBlock Grid.Row="0" HorizontalAlignment="Center" FontWeight="Bold" Foreground="Black">gff</TextBlock>
+					<ListBox Name="GFFListBox" Grid.Row="1" Foreground="Black" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" Margin="10" Background="White"></ListBox>
+					<Grid Grid.Row="2" ColumnDefinitions="*, *" HorizontalAlignment="Right">
+						<Button Name="PreviewButton" Grid.Column="0" VerticalAlignment="Center" Margin="0, 0, 10, 5" Padding="5, 0" FontSize="10" Click="GFFPreviewHandler">Preview</Button>
+						<Button Name="LoadGFF" Grid.Column="1" VerticalAlignment="Center" Margin="0, 0, 10, 5" Padding="5, 0" FontSize="10" Click="LoadGFFHandler">Load</Button>
+					</Grid>
+				</Grid>
+				<Grid Grid.Row="1" Background="Gainsboro"  RowDefinitions="Auto, *, Auto" Margin="0, 0, 0, 10">
+					<TextBlock Grid.Row="0" HorizontalAlignment="Center" FontWeight="Bold" Foreground="Black">fasta</TextBlock>
+					<ListBox Name="FastaListBox" Foreground="Black" Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" Margin="10" Background="White"></ListBox>
+					<Button Name="LoadFasta" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0, 0, 10, 5" Padding="5, 0" FontSize="10" Click="LoadFastaHandler">Load</Button>
+				</Grid>
+			</Grid>
+
+			<DataGrid Name="GFFDataGrid" Grid.Column="1" Margin="0, 0, 0, 10"></DataGrid>
+
+		</Grid>
+	</Grid>
+</UserControl>
