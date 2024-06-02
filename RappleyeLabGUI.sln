@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34728.123
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RappleyeLabGUI", "RappleyeLabGUI.csproj", "{DCDD1862-D983-4861-862A-4D7D49A694B6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DCDD1862-D983-4861-862A-4D7D49A694B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCDD1862-D983-4861-862A-4D7D49A694B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCDD1862-D983-4861-862A-4D7D49A694B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCDD1862-D983-4861-862A-4D7D49A694B6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {056CE3E6-3404-47C6-ABB1-62B90EB40BB0}
+	EndGlobalSection
+EndGlobal
