@@ -1,4 +1,5 @@
 ﻿using HarfBuzzSharp;
+using ReactiveUI;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -10,31 +11,28 @@ namespace RappleyeLabGUI.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {
-        public string gffDir { get; set; }
-        public string fastaDir { get; set; }
-        public ObservableCollection<GFFFeature> GFFFeatures { get; set; }
-
+        private ViewModelBase _contentViewModel;
+        public LoadDataViewModel LoadVM { get; }
         public MainWindowViewModel()
         {
-            gffDir = "";
-            fastaDir = "";
-            GFFFeatures = new ObservableCollection<GFFFeature>();
+            LoadVM = new LoadDataViewModel();
+            _contentViewModel = LoadVM;
         }
 
-        public void ChangeDataGrid(string filepath)
+        public ViewModelBase ContentViewModel
         {
-            StreamReader inputStream = new StreamReader(gffDir + @"\" + filepath);
-            var gfffeatures = new List<GFFFeature>();
+            get => _contentViewModel;
+            private set => this.RaiseAndSetIfChanged(ref _contentViewModel, value);
+        }
 
-            while (!inputStream.EndOfStream)
-            {
-                var line = inputStream.ReadLine();
-                var featureVals = line.Split('\t');
-                GFFFeature currFeature = new GFFFeature(featureVals[0], featureVals[1], featureVals[2], int.Parse(featureVals[3]), int.Parse(featureVals[4]), double.Parse(featureVals[5]), featureVals[6], featureVals[7], featureVals[8]);
-                gfffeatures.Add(currFeature);
-            }
+        public void NextScreen()
+        {
+            ContentViewModel = new RunCheckViewModel(LoadVM.gffDir, LoadVM.fastaDir);
+        }
 
-            GFFFeatures = new ObservableCollection<GFFFeature>(gfffeatures);
+        public void BackScreen()
+        {
+            ContentViewModel = new LoadDataViewModel();
         }
     }
 }

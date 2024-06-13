@@ -6,6 +6,8 @@ using Avalonia.Platform.Storage;
 using RappleyeLabGUI.ViewModels;
 using System.Collections.Generic;
 using System.IO;
+using System;
+using System.Text;
 using System.Linq;
 
 namespace RappleyeLabGUI.Views
@@ -22,12 +24,6 @@ namespace RappleyeLabGUI.Views
             GFFListBox.ItemsSource = new string[] { "", "", "", "", "", "", "" }.OrderBy(x => x);
             FastaListBox.ItemsSource = new string[] { "", "", "", "", "", "", "" }.OrderBy(x => x);
             GFFDataGrid.ItemsSource = LoadVM.GFFFeatures;
-        }
-
-        public void ResetHandler(object sender, RoutedEventArgs args)
-        {
-            GFFListBox.ItemsSource = new string[] { "", "", "", "", "", "", "" }.OrderBy(x => x);
-            FastaListBox.ItemsSource = new string[] { "", "", "", "", "", "", "" }.OrderBy(x => x);
         }
 
         public void GFFPreviewHandler(object sender, RoutedEventArgs args)
@@ -50,6 +46,7 @@ namespace RappleyeLabGUI.Views
         {
             // implement this later
         }
+
 
         public async void LoadFastaHandler(object sender, RoutedEventArgs args)
         {
@@ -78,17 +75,7 @@ namespace RappleyeLabGUI.Views
                     for (int i = 0; i < fastaFiles.Length; i++)
                     {
                         string filepath = fastaFiles[i].Name;
-                        int lastIndexOfSlash = filepath.LastIndexOf(@"\");
-                        if (lastIndexOfSlash == -1)
-                        {
-                            lastIndexOfSlash = filepath.LastIndexOf("/");
-                            if (lastIndexOfSlash == filepath.Length - 1)
-                            {
-                                lastIndexOfSlash--;
-                            }
-                        }
-
-                        fastaFilepaths[i] = filepath.Substring(lastIndexOfSlash + 1);
+                        fastaFilepaths[i] = Path.GetFileName(filepath);
                     }
 
                     if (fastaFilepaths.Length < 7)
@@ -144,17 +131,7 @@ namespace RappleyeLabGUI.Views
                     for (int i = 0; i < gffFiles.Length; i++)
                     {
                         string filepath = gffFiles[i].Name;
-                        int lastIndexOfSlash = filepath.LastIndexOf(@"\");
-                        if (lastIndexOfSlash == -1)
-                        {
-                            lastIndexOfSlash = filepath.LastIndexOf("/");
-                            if (lastIndexOfSlash == filepath.Length - 1)
-                            {
-                                lastIndexOfSlash--;
-                            }
-                        }
-
-                        gffFilepaths[i] = filepath.Substring(lastIndexOfSlash + 1);
+                        gffFilepaths[i] = Path.GetFileName(filepath);
                     }
 
                     if (gffFilepaths.Length < 7)

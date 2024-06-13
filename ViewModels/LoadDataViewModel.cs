@@ -23,7 +23,8 @@ namespace RappleyeLabGUI.ViewModels
 
         public void ChangeDataGrid(string filepath)
         {
-            StreamReader inputStream = new StreamReader(gffDir + @"\" + filepath);
+            //StreamReader inputStream = new StreamReader(gffDir + @"\" + filepath);
+            StreamReader inputStream = new StreamReader(Path.Combine(gffDir, filepath));
             var gfffeatures = new List<GFFFeature>();
 
             while (!inputStream.EndOfStream)

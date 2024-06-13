@@ -4,10 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 			 xmlns:vm="using:RappleyeLabGUI.ViewModels"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="RappleyeLabGUI.Views.LoadDataView"
-			 x:DataType="vm:LoadDataViewModel"
-			 Background="Black">
-	
+             x:Class="RappleyeLabGUI.Views.RunCheckView"
+			 x:DataType="vm:RunCheckViewModel">
+
 	<UserControl.Styles>
 		<Style Selector="Label">
 			<Setter Property="FontFamily" Value="{StaticResource NunitoFont}"></Setter>
@@ -91,37 +90,8 @@
 			<Setter Property="AreSeparatorsVisible" Value="True"></Setter>
 		</Style>
 	</UserControl.Styles>
-
-	<Grid RowDefinitions="*, 8*">
-		<Grid Grid.Row="0" Height="50" ColumnDefinitions="*, Auto, Auto" Background="Black">
-			<TextBlock Grid.Column="0" FontSize="20"  VerticalAlignment="Center" Margin="60, 0, 0, 0" Foreground="White">
-				<Run Text="AVALONIA" FontWeight="Black"></Run>
-				<Run Text="SAMPLE GUI" FontWeight="Medium"></Run>
-			</TextBlock>
-			<Button Name="ContinueButton" Grid.Column="1" Margin="0, 0, 20, 0" Padding="4, 1" x:CompileBindings="False"
-        Command="{Binding $parent[Window].DataContext.NextScreen}">Continue</Button>
-			<Button Name="HelpButton" Grid.Column="2" Margin="0, 0, 20, 0" Padding="4, 1">Help</Button>
-		</Grid>
-		<Grid Grid.Row="1" ColumnDefinitions="*, 3*" Background="Black">
-
-			<Grid Grid.Column="0" RowDefinitions="*, *" Margin="10, 0, 10, 0" VerticalAlignment="Center">
-				<Grid Grid.Row="0" Background="Gainsboro" RowDefinitions="Auto, *, Auto" Margin="0, 0, 0, 10">
-					<TextBlock Grid.Row="0" HorizontalAlignment="Center" FontWeight="Bold" Foreground="Black">gff</TextBlock>
-					<ListBox Name="GFFListBox" Grid.Row="1" Foreground="Black" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" Margin="10" Background="White"></ListBox>
-					<Grid Grid.Row="2" ColumnDefinitions="*, *" HorizontalAlignment="Right">
-						<Button Name="PreviewButton" Grid.Column="0" VerticalAlignment="Center" Margin="0, 0, 10, 5" Padding="5, 0" FontSize="10" Click="GFFPreviewHandler">Preview</Button>
-						<Button Name="LoadGFF" Grid.Column="1" VerticalAlignment="Center" Margin="0, 0, 10, 5" Padding="5, 0" FontSize="10" Click="LoadGFFHandler">Load</Button>
-					</Grid>
-				</Grid>
-				<Grid Grid.Row="1" Background="Gainsboro"  RowDefinitions="Auto, *, Auto" Margin="0, 0, 0, 10">
-					<TextBlock Grid.Row="0" HorizontalAlignment="Center" FontWeight="Bold" Foreground="Black">fasta</TextBlock>
-					<ListBox Name="FastaListBox" Foreground="Black" Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" Margin="10" Background="White"></ListBox>
-					<Button Name="LoadFasta" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0, 0, 10, 5" Padding="5, 0" FontSize="10" Click="LoadFastaHandler">Load</Button>
-				</Grid>
-			</Grid>
-
-			<DataGrid Name="GFFDataGrid" Grid.Column="1" Margin="0, 0, 0, 10"></DataGrid>
-
-		</Grid>
-	</Grid>
+	
+	<Button Name="BackButton" VerticalAlignment="Center" HorizontalAlignment="Center" x:CompileBindings="False"
+        Command="{Binding $parent[Window].DataContext.BackScreen}">Back</Button>
+	
 </UserControl>

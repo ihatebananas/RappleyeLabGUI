@@ -129,3 +129,4 @@ C:\Users\itz_s\Desktop\AvaloniaGUI\RappleyeLabGUI\obj\Debug\net8.0\RappleyeLabGU
 C:\Users\itz_s\Desktop\AvaloniaGUI\RappleyeLabGUI\obj\Debug\net8.0\Rappleye.CD339520.Up2Date
 C:\Users\itz_s\Desktop\AvaloniaGUI\RappleyeLabGUI\obj\Debug\net8.0\RappleyeLabGUI.genruntimeconfig.cache
 C:\Users\itz_s\Desktop\AvaloniaGUI\RappleyeLabGUI\obj\Debug\net8.0\ref\RappleyeLabGUI.dll
+C:\Users\itz_s\Desktop\AvaloniaGUI\RappleyeLabGUI\obj\Debug\net8.0\RappleyeLabGUI.sourcelink.json

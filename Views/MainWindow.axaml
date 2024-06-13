@@ -8,11 +8,12 @@
         x:Class="RappleyeLabGUI.Views.MainWindow"
 		x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
-        Title="RappleyeLabGUI">
+        Title="RappleyeLabGUI"
+		Content="{Binding ContentViewModel}">
 
 	<Design.DataContext>
 		<vm:MainWindowViewModel />
 	</Design.DataContext>
 
-	<views:LoadDataView />
+	
 </Window>
