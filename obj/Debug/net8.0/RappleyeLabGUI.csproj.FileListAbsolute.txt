@@ -130,3 +130,4 @@ C:\Users\itz_s\Desktop\AvaloniaGUI\RappleyeLabGUI\obj\Debug\net8.0\Rappleye.CD33
 C:\Users\itz_s\Desktop\AvaloniaGUI\RappleyeLabGUI\obj\Debug\net8.0\RappleyeLabGUI.genruntimeconfig.cache
 C:\Users\itz_s\Desktop\AvaloniaGUI\RappleyeLabGUI\obj\Debug\net8.0\ref\RappleyeLabGUI.dll
 C:\Users\itz_s\Desktop\AvaloniaGUI\RappleyeLabGUI\obj\Debug\net8.0\RappleyeLabGUI.sourcelink.json
+C:\Users\itz_s\Desktop\AvaloniaGUI\RappleyeLabGUI\bin\Debug\net8.0\Python.Runtime.dll

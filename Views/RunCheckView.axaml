@@ -90,8 +90,22 @@
 			<Setter Property="AreSeparatorsVisible" Value="True"></Setter>
 		</Style>
 	</UserControl.Styles>
-	
-	<Button Name="BackButton" VerticalAlignment="Center" HorizontalAlignment="Center" x:CompileBindings="False"
+
+	<Grid RowDefinitions="*, 8*">
+		<Grid Grid.Row="0" Height="50" ColumnDefinitions="*, Auto, Auto" Background="Black">
+			<TextBlock Grid.Column="0" FontSize="20"  VerticalAlignment="Center" Margin="60, 0, 0, 0" Foreground="White">
+				<Run Text="AVALONIA" FontWeight="Black"></Run>
+				<Run Text="SAMPLE GUI" FontWeight="Medium"></Run>
+			</TextBlock>
+			<Button Name="BackButton" Grid.Column="1" Margin="0, 0, 20, 0" Padding="4, 1" x:CompileBindings="False"
         Command="{Binding $parent[Window].DataContext.BackScreen}">Back</Button>
+			<Button Name="HelpButton" Grid.Column="2" Margin="0, 0, 20, 0" Padding="4, 1">Help</Button>
+		</Grid>
+		<Grid Grid.Row="1" ColumnDefinitions="*, 3*" Background="White">
+			<TextBlock Name="Test" Grid.Column="0" Text="{Binding gffDir}"></TextBlock>
+			<Button Grid.Column="1" Name="RunButton" Margin="50" Click="RunHandler">Run</Button>
+		</Grid>
+	</Grid>
+	
 	
 </UserControl>

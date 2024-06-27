@@ -32,11 +32,11 @@ namespace RappleyeLabGUI.Views
             var selectedFile = GFFListBox.SelectedItem;
             if (selectedFile != null)
             {
-                if (selectedFile.ToString() != null)
-                {
-                    string filepath = selectedFile.ToString();
-                    LoadVM.ChangeDataGrid(filepath);
+                string filepath = selectedFile.ToString();
 
+                if (filepath != "" && filepath != null) 
+                {
+                    LoadVM.ChangeDataGrid(filepath);
                     GFFDataGrid.ItemsSource = LoadVM.GFFFeatures;
                 }
             }

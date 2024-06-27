@@ -1,6 +1,9 @@
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
+using RappleyeLabGUI.ViewModels;
+
 
 namespace RappleyeLabGUI.Views
 {
@@ -11,9 +14,9 @@ namespace RappleyeLabGUI.Views
             InitializeComponent();
         }
 
-        private void InitializeComponent()
+        public void RunHandler(object sender, RoutedEventArgs args)
         {
-            AvaloniaXamlLoader.Load(this);
+            Test.Text = "Hi";
         }
     }
 }
