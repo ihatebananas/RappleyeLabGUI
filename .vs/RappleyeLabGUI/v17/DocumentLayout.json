@@ -3,32 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\itz_s\\Desktop\\AvaloniaGUI\\RappleyeLabGUI\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{DCDD1862-D983-4861-862A-4D7D49A694B6}|RappleyeLabGUI.csproj|c:\\users\\itz_s\\desktop\\avaloniagui\\rappleyelabgui\\viewmodels\\runcheckviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DCDD1862-D983-4861-862A-4D7D49A694B6}|RappleyeLabGUI.csproj|solutionrelative:viewmodels\\runcheckviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{DCDD1862-D983-4861-862A-4D7D49A694B6}|RappleyeLabGUI.csproj|c:\\users\\itz_s\\desktop\\avaloniagui\\rappleyelabgui\\viewmodels\\mainwindowviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DCDD1862-D983-4861-862A-4D7D49A694B6}|RappleyeLabGUI.csproj|solutionrelative:viewmodels\\mainwindowviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DCDD1862-D983-4861-862A-4D7D49A694B6}|RappleyeLabGUI.csproj|c:\\users\\itz_s\\desktop\\avaloniagui\\rappleyelabgui\\views\\runcheckview.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
-      "RelativeMoniker": "D:0:0:{DCDD1862-D983-4861-862A-4D7D49A694B6}|RappleyeLabGUI.csproj|solutionrelative:views\\runcheckview.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
+      "AbsoluteMoniker": "D:0:0:{DCDD1862-D983-4861-862A-4D7D49A694B6}|RappleyeLabGUI.csproj|c:\\users\\itz_s\\desktop\\avaloniagui\\rappleyelabgui\\views\\loaddataview.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
+      "RelativeMoniker": "D:0:0:{DCDD1862-D983-4861-862A-4D7D49A694B6}|RappleyeLabGUI.csproj|solutionrelative:views\\loaddataview.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{DCDD1862-D983-4861-862A-4D7D49A694B6}|RappleyeLabGUI.csproj|c:\\users\\itz_s\\desktop\\avaloniagui\\rappleyelabgui\\views\\loaddataview.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{DCDD1862-D983-4861-862A-4D7D49A694B6}|RappleyeLabGUI.csproj|solutionrelative:views\\loaddataview.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DCDD1862-D983-4861-862A-4D7D49A694B6}|RappleyeLabGUI.csproj|c:\\users\\itz_s\\desktop\\avaloniagui\\rappleyelabgui\\viewmodels\\mainwindowviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DCDD1862-D983-4861-862A-4D7D49A694B6}|RappleyeLabGUI.csproj|solutionrelative:viewmodels\\mainwindowviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{DCDD1862-D983-4861-862A-4D7D49A694B6}|RappleyeLabGUI.csproj|c:\\users\\itz_s\\desktop\\avaloniagui\\rappleyelabgui\\viewmodels\\loaddataviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{DCDD1862-D983-4861-862A-4D7D49A694B6}|RappleyeLabGUI.csproj|solutionrelative:viewmodels\\loaddataviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DCDD1862-D983-4861-862A-4D7D49A694B6}|RappleyeLabGUI.csproj|c:\\users\\itz_s\\desktop\\avaloniagui\\rappleyelabgui\\views\\runcheckview.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DCDD1862-D983-4861-862A-4D7D49A694B6}|RappleyeLabGUI.csproj|solutionrelative:views\\runcheckview.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DCDD1862-D983-4861-862A-4D7D49A694B6}|RappleyeLabGUI.csproj|c:\\users\\itz_s\\desktop\\avaloniagui\\rappleyelabgui\\views\\loaddataview.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
-      "RelativeMoniker": "D:0:0:{DCDD1862-D983-4861-862A-4D7D49A694B6}|RappleyeLabGUI.csproj|solutionrelative:views\\loaddataview.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,57 +26,31 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "MainWindowViewModel.cs",
               "DocumentMoniker": "C:\\Users\\itz_s\\Desktop\\AvaloniaGUI\\RappleyeLabGUI\\ViewModels\\MainWindowViewModel.cs",
               "RelativeDocumentMoniker": "ViewModels\\MainWindowViewModel.cs",
               "ToolTip": "C:\\Users\\itz_s\\Desktop\\AvaloniaGUI\\RappleyeLabGUI\\ViewModels\\MainWindowViewModel.cs",
               "RelativeToolTip": "ViewModels\\MainWindowViewModel.cs",
-              "ViewState": "AQIAAAsAAAAAAAAAAAAxwA4AAAAwAAAA",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAAACIAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-27T07:16:01.804Z",
+              "WhenOpened": "2024-07-01T03:11:45.522Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "LoadDataViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\itz_s\\Desktop\\AvaloniaGUI\\RappleyeLabGUI\\ViewModels\\LoadDataViewModel.cs",
-              "RelativeDocumentMoniker": "ViewModels\\LoadDataViewModel.cs",
-              "ToolTip": "C:\\Users\\itz_s\\Desktop\\AvaloniaGUI\\RappleyeLabGUI\\ViewModels\\LoadDataViewModel.cs",
-              "RelativeToolTip": "ViewModels\\LoadDataViewModel.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-27T06:31:16.888Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 1,
               "Title": "LoadDataView.axaml",
               "DocumentMoniker": "C:\\Users\\itz_s\\Desktop\\AvaloniaGUI\\RappleyeLabGUI\\Views\\LoadDataView.axaml",
               "RelativeDocumentMoniker": "Views\\LoadDataView.axaml",
               "ToolTip": "C:\\Users\\itz_s\\Desktop\\AvaloniaGUI\\RappleyeLabGUI\\Views\\LoadDataView.axaml",
               "RelativeToolTip": "Views\\LoadDataView.axaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-06-27T06:26:32.816Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "RunCheckViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\itz_s\\Desktop\\AvaloniaGUI\\RappleyeLabGUI\\ViewModels\\RunCheckViewModel.cs",
-              "RelativeDocumentMoniker": "ViewModels\\RunCheckViewModel.cs",
-              "ToolTip": "C:\\Users\\itz_s\\Desktop\\AvaloniaGUI\\RappleyeLabGUI\\ViewModels\\RunCheckViewModel.cs",
-              "RelativeToolTip": "ViewModels\\RunCheckViewModel.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAmAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-27T06:17:21.743Z",
+              "WhenOpened": "2024-06-27T21:27:03.553Z",
               "EditorCaption": ""
             },
             {
@@ -99,34 +61,22 @@
               "RelativeDocumentMoniker": "Views\\LoadDataView.axaml.cs",
               "ToolTip": "C:\\Users\\itz_s\\Desktop\\AvaloniaGUI\\RappleyeLabGUI\\Views\\LoadDataView.axaml.cs",
               "RelativeToolTip": "Views\\LoadDataView.axaml.cs",
-              "ViewState": "AQIAABUAAAAAAAAAAAAYwAcAAAAQAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACIAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-27T06:22:42.732Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "RunCheckView.axaml",
-              "DocumentMoniker": "C:\\Users\\itz_s\\Desktop\\AvaloniaGUI\\RappleyeLabGUI\\Views\\RunCheckView.axaml",
-              "RelativeDocumentMoniker": "Views\\RunCheckView.axaml",
-              "ToolTip": "C:\\Users\\itz_s\\Desktop\\AvaloniaGUI\\RappleyeLabGUI\\Views\\RunCheckView.axaml",
-              "RelativeToolTip": "Views\\RunCheckView.axaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-06-27T06:18:13.313Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "RunCheckView.axaml.cs",
-              "DocumentMoniker": "C:\\Users\\itz_s\\Desktop\\AvaloniaGUI\\RappleyeLabGUI\\Views\\RunCheckView.axaml.cs",
-              "RelativeDocumentMoniker": "Views\\RunCheckView.axaml.cs",
-              "ToolTip": "C:\\Users\\itz_s\\Desktop\\AvaloniaGUI\\RappleyeLabGUI\\Views\\RunCheckView.axaml.cs",
-              "RelativeToolTip": "Views\\RunCheckView.axaml.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAAdAAAA",
+              "DocumentIndex": 3,
+              "Title": "LoadDataViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\itz_s\\Desktop\\AvaloniaGUI\\RappleyeLabGUI\\ViewModels\\LoadDataViewModel.cs",
+              "RelativeDocumentMoniker": "ViewModels\\LoadDataViewModel.cs",
+              "ToolTip": "C:\\Users\\itz_s\\Desktop\\AvaloniaGUI\\RappleyeLabGUI\\ViewModels\\LoadDataViewModel.cs",
+              "RelativeToolTip": "ViewModels\\LoadDataViewModel.cs",
+              "ViewState": "AQIAACEAAAAAAAAAAAA1wBwAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-27T06:22:39.745Z",
+              "WhenOpened": "2024-06-27T06:31:16.888Z",
               "EditorCaption": ""
             }
           ]

@@ -102,7 +102,7 @@
 			<Button Name="HelpButton" Grid.Column="2" Margin="0, 0, 20, 0" Padding="4, 1">Help</Button>
 		</Grid>
 		<Grid Grid.Row="1" ColumnDefinitions="*, 3*" Background="White">
-			<TextBlock Name="Test" Grid.Column="0" Text="{Binding gffDir}"></TextBlock>
+			<TextBlock Name="Test" Grid.Column="0" Text="{Binding GffDir}"></TextBlock>
 			<Button Grid.Column="1" Name="RunButton" Margin="50" Click="RunHandler">Run</Button>
 		</Grid>
 	</Grid>

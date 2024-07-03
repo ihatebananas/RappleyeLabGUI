@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ReactiveUI;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,12 +9,25 @@ namespace RappleyeLabGUI.ViewModels
 {
     public class RunCheckViewModel : ViewModelBase
     {
-        public string gffDir { get; set; }
-        public string fastaDir { get; set; }
+        private string _gffDir;
+        private string _fastaDir;
+
         public RunCheckViewModel(string gffDirectory, string fastaDirectory)
         {
-            gffDir = gffDirectory;
-            fastaDir = fastaDirectory;
+            _gffDir = gffDirectory;
+            _fastaDir = fastaDirectory;
+        }
+
+        public string GffDir
+        {
+            get => _gffDir;
+            set => this.RaiseAndSetIfChanged(ref _gffDir, value);
+        }
+
+        public string FastaDir
+        {
+            get => _fastaDir;
+            set => this.RaiseAndSetIfChanged(ref _fastaDir, value);
         }
     }
 }

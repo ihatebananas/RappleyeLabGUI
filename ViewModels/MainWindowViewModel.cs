@@ -1,22 +1,26 @@
 ﻿using HarfBuzzSharp;
+using Microsoft.CodeAnalysis.Scripting.Hosting;
 using ReactiveUI;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Linq;
 using System.Net.Security;
+using System.Reactive;
 using Tmds.DBus.Protocol;
 
 namespace RappleyeLabGUI.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {
+        public ReactiveCommand<string[], Unit> NextCommand { get; }
         private ViewModelBase _contentViewModel;
-        public LoadDataViewModel LoadVM { get; }
+
         public MainWindowViewModel()
         {
-            LoadVM = new LoadDataViewModel();
-            _contentViewModel = LoadVM;
+            _contentViewModel = new LoadDataViewModel();
+            NextCommand = ReactiveCommand.Create<string[]>(NextScreen);
         }
 
         public ViewModelBase ContentViewModel
@@ -25,9 +29,9 @@ namespace RappleyeLabGUI.ViewModels
             private set => this.RaiseAndSetIfChanged(ref _contentViewModel, value);
         }
 
-        public void NextScreen()
+        public void NextScreen(string[] directories)
         {
-            ContentViewModel = new RunCheckViewModel(LoadVM.gffDir, LoadVM.fastaDir);
+            ContentViewModel = new RunCheckViewModel(directories[0], directories[1]);
         }
 
         public void BackScreen()

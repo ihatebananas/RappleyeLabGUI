@@ -1,12 +1,12 @@
 <UserControl xmlns="https://github.com/avaloniaui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-			 xmlns:vm="using:RappleyeLabGUI.ViewModels"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="RappleyeLabGUI.Views.LoadDataView"
-			 x:DataType="vm:LoadDataViewModel"
-			 Background="Black">
+					 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+					 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+					 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+					 xmlns:vm="using:RappleyeLabGUI.ViewModels"
+					 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+					 x:Class="RappleyeLabGUI.Views.LoadDataView"
+					 x:DataType="vm:LoadDataViewModel"
+					 Background="Black">
 	
 	<UserControl.Styles>
 		<Style Selector="Label">
@@ -99,7 +99,7 @@
 				<Run Text="SAMPLE GUI" FontWeight="Medium"></Run>
 			</TextBlock>
 			<Button Name="ContinueButton" Grid.Column="1" Margin="0, 0, 20, 0" Padding="4, 1" x:CompileBindings="False"
-        Command="{Binding $parent[Window].DataContext.NextScreen}">Continue</Button>
+        Command="{Binding $parent[Window].DataContext.NextCommand}" CommandParameter="{Binding Directories}" IsEnabled="False">Continue</Button>
 			<Button Name="HelpButton" Grid.Column="2" Margin="0, 0, 20, 0" Padding="4, 1">Help</Button>
 		</Grid>
 		<Grid Grid.Row="1" ColumnDefinitions="*, 3*" Background="Black">
@@ -107,21 +107,24 @@
 			<Grid Grid.Column="0" RowDefinitions="*, *" Margin="10, 0, 10, 0" VerticalAlignment="Center">
 				<Grid Grid.Row="0" Background="Gainsboro" RowDefinitions="Auto, *, Auto" Margin="0, 0, 0, 10">
 					<TextBlock Grid.Row="0" HorizontalAlignment="Center" FontWeight="Bold" Foreground="Black">gff</TextBlock>
-					<ListBox Name="GFFListBox" Grid.Row="1" Foreground="Black" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" Margin="10" Background="White"></ListBox>
+					<ListBox Name="GFFListBox" Grid.Row="1" Foreground="Black" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" Margin="10" Background="White" SelectedItem="{Binding SelectedGFF, Mode=TwoWay}"></ListBox>
 					<Grid Grid.Row="2" ColumnDefinitions="*, *" HorizontalAlignment="Right">
-						<Button Name="PreviewButton" Grid.Column="0" VerticalAlignment="Center" Margin="0, 0, 10, 5" Padding="5, 0" FontSize="10" Click="GFFPreviewHandler">Preview</Button>
-						<Button Name="LoadGFF" Grid.Column="1" VerticalAlignment="Center" Margin="0, 0, 10, 5" Padding="5, 0" FontSize="10" Click="LoadGFFHandler">Load</Button>
+						<Button Name="PreviewButton" Grid.Column="0" VerticalAlignment="Center" Margin="0, 0, 10, 5" Padding="5, 0" FontSize="10" Command="{Binding GffPreviewCommand}">Preview</Button>
+						<Button Name="LoadGFF" Grid.Column="1" VerticalAlignment="Center" Margin="0, 0, 10, 5" Padding="5, 0" FontSize="10" Click="ShowGFFDialog">Load</Button>
 					</Grid>
 				</Grid>
 				<Grid Grid.Row="1" Background="Gainsboro"  RowDefinitions="Auto, *, Auto" Margin="0, 0, 0, 10">
 					<TextBlock Grid.Row="0" HorizontalAlignment="Center" FontWeight="Bold" Foreground="Black">fasta</TextBlock>
 					<ListBox Name="FastaListBox" Foreground="Black" Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" Margin="10" Background="White"></ListBox>
-					<Button Name="LoadFasta" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0, 0, 10, 5" Padding="5, 0" FontSize="10" Click="LoadFastaHandler">Load</Button>
+					<Button Name="LoadFasta" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0, 0, 10, 5" Padding="5, 0" FontSize="10" Click="ShowFastaDialog">Load</Button>
 				</Grid>
 			</Grid>
 
-			<DataGrid Name="GFFDataGrid" Grid.Column="1" Margin="0, 0, 0, 10"></DataGrid>
+			<DataGrid Name="GFFDataGrid" Grid.Column="1" Margin="0, 0, 0, 10" ItemsSource="{Binding GffFeatures}"></DataGrid>
 
+			<ListBox Name="DirectoryDummy" Grid.Column="1" IsVisible="False" ItemsSource="{Binding Directories, Mode=TwoWay}"></ListBox>
+			<TextBox Name="GffDummy" Grid.Column="1" IsVisible="False" Text="{Binding GffDir, Mode=TwoWay}"></TextBox>
+			<TextBox Name="FastaDummy" Grid.Column="1" IsVisible="False" Text="{Binding FastaDir, Mode=TwoWay}"></TextBox>
 		</Grid>
 	</Grid>
 </UserControl>

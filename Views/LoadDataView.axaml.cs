@@ -9,46 +9,28 @@ using System.IO;
 using System;
 using System.Text;
 using System.Linq;
+using Avalonia.ReactiveUI;
+using ReactiveUI;
+using System.Reactive;
+using System.Threading.Tasks;
 
 namespace RappleyeLabGUI.Views
 {
-
     public partial class LoadDataView : UserControl
     {
-
-        public LoadDataViewModel LoadVM { get; }
         public LoadDataView()
         {
             InitializeComponent();
-            LoadVM = new LoadDataViewModel();
-            GFFListBox.ItemsSource = new string[] { "", "", "", "", "", "", "" }.OrderBy(x => x);
-            FastaListBox.ItemsSource = new string[] { "", "", "", "", "", "", "" }.OrderBy(x => x);
-            GFFDataGrid.ItemsSource = LoadVM.GFFFeatures;
+            GFFListBox.ItemsSource = new string[] { "", "", "", "", "", "", "" };
+            FastaListBox.ItemsSource = new string[] { "", "", "", "", "", "", "" };
         }
 
-        public void GFFPreviewHandler(object sender, RoutedEventArgs args)
+        public bool CanContinue()
         {
-
-            var selectedFile = GFFListBox.SelectedItem;
-            if (selectedFile != null)
-            {
-                string filepath = selectedFile.ToString();
-
-                if (filepath != "" && filepath != null) 
-                {
-                    LoadVM.ChangeDataGrid(filepath);
-                    GFFDataGrid.ItemsSource = LoadVM.GFFFeatures;
-                }
-            }
+            return GffDummy.Text != "" && FastaDummy.Text != "" && GffDummy.Text != null && FastaDummy.Text != null;
         }
 
-        public void HelpHandler(object sender, RoutedEventArgs args)
-        {
-            // implement this later
-        }
-
-
-        public async void LoadFastaHandler(object sender, RoutedEventArgs args)
+        public async void ShowFastaDialog(object sender, RoutedEventArgs e)
         {
             FolderPickerOpenOptions folderPicker = new FolderPickerOpenOptions();
             folderPicker.Title = "Select a folder for your fasta file directory: ";
@@ -61,13 +43,9 @@ namespace RappleyeLabGUI.Views
             if (folderPicked.Count != 0)
             {
                 string path = folderPicked[0].TryGetLocalPath();
-                if (path == null)
+                if (path != null)
                 {
-                    // disable the load button and tell user that something is wrong with picked file
-                }
-                else
-                {
-                    LoadVM.fastaDir = path;
+                    FastaDummy.Text = path;
                     DirectoryInfo fastaDirectory = new DirectoryInfo(path);
                     FileInfo[] fastaFiles = fastaDirectory.GetFiles("*.fas");
                     string[] fastaFilepaths = new string[fastaFiles.Length];
@@ -101,10 +79,18 @@ namespace RappleyeLabGUI.Views
                     }
                 }
             }
+
+            if (CanContinue())
+            {
+                string gffDir = GffDummy.Text;
+                string fastaDir = FastaDummy.Text;
+                DirectoryDummy.ItemsSource = new string[] {gffDir, fastaDir};
+                ContinueButton.IsEnabled = true;
+            }
         }
 
 
-        public async void LoadGFFHandler(object sender, RoutedEventArgs args)
+        public async void ShowGFFDialog(object sender, RoutedEventArgs e)
         {
             FolderPickerOpenOptions folderPicker = new FolderPickerOpenOptions();
             folderPicker.Title = "Select a folder for your GFF directory: ";
@@ -112,18 +98,13 @@ namespace RappleyeLabGUI.Views
 
             var top = TopLevel.GetTopLevel(this);
 
-
             IReadOnlyList<IStorageFolder> folderPicked = await top.StorageProvider.OpenFolderPickerAsync(folderPicker);
             if (folderPicked.Count != 0)
             {
                 string path = folderPicked[0].TryGetLocalPath();
-                if (path == null)
+                if (path != null)
                 {
-                    // disable the load button and tell user that something is wrong with picked file
-                }
-                else
-                {
-                    LoadVM.gffDir = path;
+                    GffDummy.Text = path;
                     DirectoryInfo gffDirectory = new DirectoryInfo(path);
                     FileInfo[] gffFiles = gffDirectory.GetFiles("*.gff");
                     string[] gffFilepaths = new string[gffFiles.Length];
@@ -156,6 +137,14 @@ namespace RappleyeLabGUI.Views
                         GFFListBox.ItemsSource = gffFilepaths.ToArray();
                     }
                 }
+            }
+
+            if (CanContinue())
+            {
+                string gffDir = GffDummy.Text;
+                string fastaDir = FastaDummy.Text;
+                DirectoryDummy.ItemsSource = new string[] { gffDir, fastaDir };
+                ContinueButton.IsEnabled = true;
             }
         }
     }

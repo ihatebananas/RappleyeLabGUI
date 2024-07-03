@@ -16,7 +16,7 @@ namespace RappleyeLabGUI.Views
 
         public void RunHandler(object sender, RoutedEventArgs args)
         {
-            Test.Text = "Hi";
+
         }
     }
 }
