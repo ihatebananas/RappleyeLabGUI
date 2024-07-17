@@ -28,4 +28,14 @@
   <ItemGroup>
     <Folder Include="Models\" />
   </ItemGroup>
+
+  <ItemGroup>
+    <None Include="bin\Debug\net8.0\output_file.csv" />
+    <None Include="bin\Debug\net8.0\python_scripts\chain.py" />
+    <None Include="bin\Debug\net8.0\python_scripts\handler.py" />
+    <None Include="bin\Debug\net8.0\python_scripts\main.py" />
+    <None Include="bin\Debug\net8.0\python_scripts\preprocess.py" />
+    <None Include="bin\Debug\net8.0\python_scripts\request.py" />
+    <None Include="bin\Debug\net8.0\python_scripts\validators.py" />
+  </ItemGroup>
 </Project>

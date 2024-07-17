@@ -18,16 +18,20 @@ namespace RappleyeLabGUI.Views
 {
     public partial class LoadDataView : UserControl
     {
+        private bool ValidGff;
+        private bool ValidFas;
         public LoadDataView()
         {
             InitializeComponent();
             GFFListBox.ItemsSource = new string[] { "", "", "", "", "", "", "" };
             FastaListBox.ItemsSource = new string[] { "", "", "", "", "", "", "" };
+            ValidGff = false;
+            ValidFas = false;
         }
 
         public bool CanContinue()
         {
-            return GffDummy.Text != "" && FastaDummy.Text != "" && GffDummy.Text != null && FastaDummy.Text != null;
+            return GffDummy.Text != null && FastaDummy.Text != null && GffDummy.Text != "" && FastaDummy.Text != "" && ValidGff && ValidFas;
         }
 
         public async void ShowFastaDialog(object sender, RoutedEventArgs e)
@@ -49,6 +53,16 @@ namespace RappleyeLabGUI.Views
                     DirectoryInfo fastaDirectory = new DirectoryInfo(path);
                     FileInfo[] fastaFiles = fastaDirectory.GetFiles("*.fas");
                     string[] fastaFilepaths = new string[fastaFiles.Length];
+
+                    if (fastaFiles.Length == 0)
+                    {
+                        ValidFas = false;
+                        ContinueButton.IsEnabled = false;
+                    }
+                    else
+                    {
+                        ValidFas = true;
+                    }
 
                     for (int i = 0; i < fastaFiles.Length; i++)
                     {
@@ -108,6 +122,16 @@ namespace RappleyeLabGUI.Views
                     DirectoryInfo gffDirectory = new DirectoryInfo(path);
                     FileInfo[] gffFiles = gffDirectory.GetFiles("*.gff");
                     string[] gffFilepaths = new string[gffFiles.Length];
+
+                    if (gffFiles.Length == 0)
+                    {
+                        ValidGff = false;
+                        ContinueButton.IsEnabled = false;
+                    }
+                    else
+                    {
+                        ValidGff = true;
+                    }
 
                     for (int i = 0; i < gffFiles.Length; i++)
                     {

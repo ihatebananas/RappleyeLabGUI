@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("RappleyeLabGUI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+de747ecf2544efa992da531bf9d5e3aa7459853e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+81fb1e6167edcb4e5fce71a8ce4df1c226a6359c")]
 [assembly: System.Reflection.AssemblyProductAttribute("RappleyeLabGUI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("RappleyeLabGUI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

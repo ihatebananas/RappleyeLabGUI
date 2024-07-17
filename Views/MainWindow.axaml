@@ -9,7 +9,8 @@
 		x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
         Title="RappleyeLabGUI"
-		Content="{Binding ContentViewModel}">
+		Content="{Binding ContentViewModel}"
+		Focusable="True">
 
 	<Design.DataContext>
 		<vm:MainWindowViewModel />

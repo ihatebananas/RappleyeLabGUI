@@ -14,10 +14,6 @@ namespace RappleyeLabGUI.Views
             InitializeComponent();
         }
 
-        public void RunHandler(object sender, RoutedEventArgs args)
-        {
-
-        }
     }
 }
 

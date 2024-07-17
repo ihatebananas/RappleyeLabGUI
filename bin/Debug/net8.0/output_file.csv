@@ -1,0 +1,11 @@
+filename,error_type,identifier,error_message
+BP_Contig457_20231226.gff,CDS,BP_Contig457: 1 - 2640,"The stop codon is GGC and not one of TAG, TAA, or TGA"
+FE_Contig19_20231212.gff,CDS,FE_Contig19: 851678 - 852951,There is a premature stop codon at coordinate 851699
+GX_Contig297_20231227.gff,GFF Structure,21,Strands don't match for gene and exon for feature HC_3784
+GX_Contig297_20231227.gff,GFF Structure,76,Strands don't match for gene and exon for feature HC_3837
+GY_Contig460_20231212.gff,Splice Site,HC_4010_spliced:451546 - 451708,Start splice site ATAAG does not start with GT or GC
+GY_Contig460_20231212.gff,Splice Site,HC_4010_spliced:451546 - 451708,The splice site end AC is not AG
+HS_Contig68_20231212.gff,CDS,HS_Contig68: 546454 - 548200,There is a premature stop codon at coordinate 546640
+JG_Contig206_with_cds_predicted_algo.gff,CDS,JG_Contig206: 2 - 2927,"The stop codon is GAT and not one of TAG, TAA, or TGA"
+ZL_Contig1131_20230731.gff,CDS,ZL_Contig1131: 1016287 - 1018911,There is a premature stop codon at coordinate 1018054
+ZT_Contig1089_with_cds_predicted_algo.gff,CDS,ZT_Contig1089: 3 - 3066,"The stop codon is CCC and not one of TAG, TAA, or TGA"
