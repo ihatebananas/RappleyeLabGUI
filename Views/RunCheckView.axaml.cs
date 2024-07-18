@@ -2,7 +2,10 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
+using Avalonia.Threading;
 using RappleyeLabGUI.ViewModels;
+using System.Threading;
+using System.Threading.Tasks;
 
 
 namespace RappleyeLabGUI.Views

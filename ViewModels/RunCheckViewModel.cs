@@ -13,6 +13,7 @@ using System.Security.AccessControl;
 using Avalonia;
 using System.Reflection;
 using System.Diagnostics;
+using System.Threading;
 
 namespace RappleyeLabGUI.ViewModels
 {
@@ -22,6 +23,8 @@ namespace RappleyeLabGUI.ViewModels
         private string _fastaDir;
         private string _pythonExe;
         private bool _canRun;
+        private bool _canBack;
+        private bool _canEditTextBox;
         private int _progressVal;
         private ObservableCollection<ErrorLine> _errorLines;
 
@@ -35,15 +38,45 @@ namespace RappleyeLabGUI.ViewModels
             _canRun = false;
             _errorLines = new ObservableCollection<ErrorLine>();
             _progressVal = 0;
+            _canBack = true;
+            _canEditTextBox = true;
 
             RunCommand = ReactiveCommand.Create(RunChecks);
+
         }
 
-        public async void RunChecks()
+        private void RunPython(string gffFilepath)
         {
-            string error_header = "filename,error_type,identifier,error_message";
             string relative_path = Path.Combine("python_scripts", "main.py");
 
+            Process p = new Process();
+            p.StartInfo = new ProcessStartInfo(PythonExe)
+            {
+                RedirectStandardOutput = true,
+                UseShellExecute = false,
+                CreateNoWindow = true
+            };
+
+            p.StartInfo.ArgumentList.Add(relative_path);
+            p.StartInfo.ArgumentList.Add(gffFilepath);
+            p.StartInfo.ArgumentList.Add(FastaDir);
+
+            p.Start();
+
+            Console.WriteLine(p.StandardOutput.ReadToEnd());
+
+            p.WaitForExit();
+
+        }
+
+        // C:\Users\itz_s\AppData\Local\Programs\Python\Python311\python.exe
+        public async void RunChecks()
+        {
+            CanRun = false;
+            CanBack = false;
+            CanEditTextBox = false;
+
+            string error_header = "filename,error_type,identifier,error_message";
             File.WriteAllText("output_file.csv", error_header);
 
             DirectoryInfo gffFolder = new DirectoryInfo(GffDir);
@@ -52,29 +85,16 @@ namespace RappleyeLabGUI.ViewModels
             int count = 0;
             foreach (FileInfo gffFile in gffFiles)
             {
+                await Task.Run(() => RunPython(gffFile.FullName));
+
                 count++;
-                Process p = new Process();
-                p.StartInfo = new ProcessStartInfo(PythonExe)
-                {
-                    RedirectStandardOutput = true,
-                    UseShellExecute = false,
-                    CreateNoWindow = true
-                };
+                ProgressVal = (int)((count * 100) / gffFiles.Length);
 
-                p.StartInfo.ArgumentList.Add(relative_path);
-                p.StartInfo.ArgumentList.Add(gffFile.FullName);
-                p.StartInfo.ArgumentList.Add(FastaDir);
-
-                p.Start();
-
-                Console.WriteLine(p.StandardOutput.ReadToEnd());
-
-                await p.WaitForExitAsync();
-
-                ProgressVal = (int)((count / gffFiles.Length) * 100);
             }
 
-            // update CanRun maybe?
+            CanRun = true;
+            CanBack = true;
+            CanEditTextBox = true;
 
             ChangeDataGrid("output_file.csv");
         }
@@ -129,6 +149,18 @@ namespace RappleyeLabGUI.ViewModels
         {
             get => _canRun;
             set => this.RaiseAndSetIfChanged(ref _canRun, value);
+        }
+
+        public bool CanBack
+        {
+            get => _canBack;
+            set => this.RaiseAndSetIfChanged(ref _canBack, value);
+        }
+
+        public bool CanEditTextBox
+        {
+            get => _canEditTextBox;
+            set => this.RaiseAndSetIfChanged(ref _canEditTextBox, value);
         }
 
         public ObservableCollection<ErrorLine> ErrorLines
