@@ -20,6 +20,9 @@ build_property.EnableGeneratedComInterfaceComImportInterop =
 [C:/Users/itz_s/Desktop/AvaloniaGUI/RappleyeLabGUI/App.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
+[C:/Users/itz_s/Desktop/AvaloniaGUI/RappleyeLabGUI/Views/HelpWindow.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
 [C:/Users/itz_s/Desktop/AvaloniaGUI/RappleyeLabGUI/Views/LoadDataView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 

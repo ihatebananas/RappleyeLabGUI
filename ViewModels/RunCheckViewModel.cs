@@ -26,6 +26,7 @@ namespace RappleyeLabGUI.ViewModels
         private bool _canBack;
         private bool _canEditTextBox;
         private int _progressVal;
+        private string _statusText;
         private ObservableCollection<ErrorLine> _errorLines;
 
         public ReactiveCommand<Unit, Unit> RunCommand { get; }
@@ -40,38 +41,57 @@ namespace RappleyeLabGUI.ViewModels
             _progressVal = 0;
             _canBack = true;
             _canEditTextBox = true;
+            _statusText = "";
 
             RunCommand = ReactiveCommand.Create(RunChecks);
 
         }
 
-        private void RunPython(string gffFilepath)
+        private string RunPython(string gffFilepath)
         {
-            string relative_path = Path.Combine("python_scripts", "main.py");
-
-            Process p = new Process();
-            p.StartInfo = new ProcessStartInfo(PythonExe)
+            try
             {
-                RedirectStandardOutput = true,
-                UseShellExecute = false,
-                CreateNoWindow = true
-            };
+                string relative_path = Path.Combine("python_scripts", "main.py");
 
-            p.StartInfo.ArgumentList.Add(relative_path);
-            p.StartInfo.ArgumentList.Add(gffFilepath);
-            p.StartInfo.ArgumentList.Add(FastaDir);
+                Process p = new Process();
+                p.StartInfo = new ProcessStartInfo(PythonExe)
+                {
+                    // RedirectStandardOutput = true,
+                    UseShellExecute = false,
+                    CreateNoWindow = true
+                };
 
-            p.Start();
+                p.StartInfo.ArgumentList.Add(relative_path);
+                p.StartInfo.ArgumentList.Add(gffFilepath);
+                p.StartInfo.ArgumentList.Add(FastaDir);
 
-            Console.WriteLine(p.StandardOutput.ReadToEnd());
+                p.Start();
 
-            p.WaitForExit();
+                // Console.WriteLine(p.StandardOutput.ReadToEnd());
+
+                p.WaitForExit();
+
+                if (p.ExitCode == 0)
+                {
+                    return "success";
+                } 
+                else
+                {
+                    return "python exception raised";
+                }
+            }
+            catch
+            {
+                return "python exe filepath is incorrect";
+            }
 
         }
 
         // C:\Users\itz_s\AppData\Local\Programs\Python\Python311\python.exe
         public async void RunChecks()
         {
+            StatusText = "";
+            ProgressVal = 0;
             CanRun = false;
             CanBack = false;
             CanEditTextBox = false;
@@ -85,7 +105,21 @@ namespace RappleyeLabGUI.ViewModels
             int count = 0;
             foreach (FileInfo gffFile in gffFiles)
             {
-                await Task.Run(() => RunPython(gffFile.FullName));
+                string result = await Task.Run(() => RunPython(gffFile.FullName));
+                if (result == "python exception raised")
+                {
+                    StreamWriter outputWriter = new StreamWriter("output_file.csv", true);
+
+                    outputWriter.Write("\n" + Path.GetFileName(gffFile.FullName) + ",Analysis,None,Error checks failed--see Help for possible reasons.");
+
+                    outputWriter.Close();
+                }
+                else if (result == "python exe filepath is incorrect")
+                {
+                    StatusText = "python.exe path is incorrect--please re-enter";
+                    ProgressVal = 100;
+                    break;
+                }
 
                 count++;
                 ProgressVal = (int)((count * 100) / gffFiles.Length);
@@ -97,6 +131,7 @@ namespace RappleyeLabGUI.ViewModels
             CanEditTextBox = true;
 
             ChangeDataGrid("output_file.csv");
+
         }
 
         public void ChangeDataGrid(string filepath)
@@ -118,6 +153,8 @@ namespace RappleyeLabGUI.ViewModels
             }
 
             ErrorLines = new ObservableCollection<ErrorLine>(errorLines);
+
+            inputStream.Close();
         }
 
         public string GffDir
@@ -141,6 +178,10 @@ namespace RappleyeLabGUI.ViewModels
                 if (_pythonExe != "" && _pythonExe != null)
                 {
                     CanRun = true;
+                }
+                else
+                {
+                    CanRun = false;
                 }
             }
         }
@@ -173,6 +214,12 @@ namespace RappleyeLabGUI.ViewModels
         {
             get => _progressVal;
             set => this.RaiseAndSetIfChanged(ref _progressVal, value);
+        }
+
+        public string StatusText
+        {
+            get => _statusText;
+            set => this.RaiseAndSetIfChanged(ref _statusText, value);
         }
 
     }

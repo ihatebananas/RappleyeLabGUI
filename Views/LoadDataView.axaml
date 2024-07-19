@@ -100,7 +100,7 @@
 			</TextBlock>
 			<Button Name="ContinueButton" Grid.Column="1" Margin="0, 0, 20, 0" Padding="4, 1" x:CompileBindings="False"
         Command="{Binding $parent[Window].DataContext.NextCommand}" CommandParameter="{Binding Directories}" IsEnabled="False">Continue</Button>
-			<Button Name="HelpButton" Grid.Column="2" Margin="0, 0, 20, 0" Padding="4, 1">Help</Button>
+			<Button Name="HelpButton" Grid.Column="2" Margin="0, 0, 20, 0" Padding="4, 1" Click="HelpHandler">Help</Button>
 		</Grid>
 		<Grid Grid.Row="1" ColumnDefinitions="*, 3*" Background="Black">
 

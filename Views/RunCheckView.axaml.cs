@@ -17,6 +17,11 @@ namespace RappleyeLabGUI.Views
             InitializeComponent();
         }
 
+        public void HelpHandler(object sender, RoutedEventArgs args)
+        {
+            var helpWindow = new HelpWindow();
+            helpWindow.Show();
+        }
     }
 }
 

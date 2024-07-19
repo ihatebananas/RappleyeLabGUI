@@ -111,10 +111,5 @@ namespace RappleyeLabGUI.ViewModels
             }
         }
 
-        public void HelpHandler()
-        {
-            // implement this later
-        }
-
     }
 }

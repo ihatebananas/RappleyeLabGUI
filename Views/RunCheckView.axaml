@@ -74,11 +74,6 @@
 			<Setter Property="Background" Value="Gainsboro"></Setter>
 			<Setter Property="Foreground" Value="Gray"></Setter>
 		</Style>
-		<Style Selector="TextBox:disabled /template/ ContentPresenter">
-			<Setter Property="IsVisible" Value="True"></Setter>
-			<Setter Property="Background" Value="Gainsboro"></Setter>
-			<Setter Property="Foreground" Value="Gray"></Setter>
-		</Style>
 		<Style Selector="ToolTip">
 			<Setter Property="Background" Value="#f2f2f2"></Setter>
 		</Style>
@@ -109,11 +104,14 @@
 			</TextBlock>
 			<Button Name="BackButton" Grid.Column="1" Margin="0, 0, 20, 0" Padding="4, 1" x:CompileBindings="False"
         Command="{Binding $parent[Window].DataContext.BackScreen}" IsEnabled="{Binding CanBack}">Back</Button>
-			<Button Name="HelpButton" Grid.Column="2" Margin="0, 0, 20, 0" Padding="4, 1">Help</Button>
+			<Button Name="HelpButton" Grid.Column="2" Margin="0, 0, 20, 0" Padding="4, 1" Click="HelpHandler">Help</Button>
 		</Grid>
-		<Grid Grid.Row="1" RowDefinitions="*, *, 3*, *" Background="White">
+		<Grid Grid.Row="1" RowDefinitions="0.5*, *, 5*, *" Background="White">
 			<TextBox Grid.Row="0" Name="PythonExeBox" Text="{Binding PythonExe, Mode=TwoWay}" Margin="10" IsEnabled="{Binding CanEditTextBox}"></TextBox>
-			<Button Grid.Row="1" Name="RunButton" Margin="10" Command="{Binding RunCommand}" IsEnabled="{Binding CanRun}">Run</Button>
+			<Grid Grid.Row="1" ColumnDefinitions="*, Auto">
+				<TextBlock Name="StatusText" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="Red" FontWeight="Bold" Text="{Binding StatusText}"></TextBlock>
+				<Button Grid.Column="1" Name="RunButton" Margin="20, 10, 20, 10" Command="{Binding RunCommand}" IsEnabled="{Binding CanRun}" HorizontalAlignment="Right">Run</Button>
+			</Grid>
 			<DataGrid Grid.Row="2" Name="ErrorGrid" Margin="10" ItemsSource="{Binding ErrorLines}"></DataGrid>
 			<ProgressBar Name="GffProgressBar" Grid.Row="3" Margin="10" Height="20" Minimum="0" Maximum="100" Foreground="Green" Background="Gainsboro" ShowProgressText="True" Value="{Binding ProgressVal, Mode=TwoWay}"></ProgressBar>
 		</Grid>

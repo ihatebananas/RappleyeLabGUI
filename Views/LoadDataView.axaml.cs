@@ -29,6 +29,12 @@ namespace RappleyeLabGUI.Views
             ValidFas = false;
         }
 
+        public void HelpHandler(object sender, RoutedEventArgs args)
+        {
+            var helpWindow = new HelpWindow();
+            helpWindow.Show();
+        }
+
         public bool CanContinue()
         {
             return GffDummy.Text != null && FastaDummy.Text != null && GffDummy.Text != "" && FastaDummy.Text != "" && ValidGff && ValidFas;
