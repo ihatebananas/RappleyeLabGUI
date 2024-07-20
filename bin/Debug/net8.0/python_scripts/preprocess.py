@@ -76,9 +76,6 @@ class DataPreprocessor:
         if group.iloc[0, 6] == "-":
             temp = Seq(curr_sequence)
             curr_sequence = str(temp.reverse_complement())
-
-        elif group.iloc[0, 6] == ".":
-            raise ValueError("Error in Constructing CDS Sequence: CDS cannot have unkown direction")
         
         return curr_sequence
 

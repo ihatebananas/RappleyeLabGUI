@@ -35,40 +35,6 @@
 			<Setter Property="FontFamily" Value="{StaticResource NunitoFont}"></Setter>
 			<Setter Property="Foreground" Value="Black"></Setter>
 		</Style>
-		<Style Selector="ToggleButton">
-			<Setter Property="FontFamily" Value="{StaticResource NunitoFont}"></Setter>
-			<Setter Property="FontSize" Value="13"></Setter>
-			<Setter Property="Width" Value="100"></Setter>
-			<Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
-			<Setter Property="Margin" Value="0, 10, 10, 10"></Setter>
-			<Setter Property="Foreground" Value="Black"></Setter>
-			<Setter Property="Background" Value="Gainsboro"></Setter>
-			<Setter Property="ToolTip.ShowDelay" Value="0"></Setter>
-		</Style>
-		<Style Selector="ToggleButton:pointerover /template/ ContentPresenter">
-			<Setter Property="FontFamily" Value="{StaticResource NunitoFont}"></Setter>
-			<Setter Property="Foreground" Value="Black"></Setter>
-			<Setter Property="Background" Value="#5adbb5"></Setter>
-		</Style>
-		<Style Selector="ToggleButton:pressed /template/ ContentPresenter">
-			<Setter Property="FontFamily" Value="{StaticResource NunitoFont}"></Setter>
-			<Setter Property="Foreground" Value="Black"></Setter>
-			<Setter Property="Background" Value="#5adbb5"></Setter>
-			<Setter Property="Opacity" Value="0.75"></Setter>
-		</Style>
-		<Style Selector="ToggleButton:checked /template/ ContentPresenter">
-			<Setter Property="Background" Value="#c576f6"></Setter>
-			<Setter Property="Foreground" Value="Black"></Setter>
-		</Style>
-		<Style Selector="ToggleButton:checked:pointerover /template/ ContentPresenter">
-			<Setter Property="FontFamily" Value="{StaticResource NunitoFont}"></Setter>
-			<Setter Property="Foreground" Value="Black"></Setter>
-			<Setter Property="Background" Value="#5adbb5"></Setter>
-		</Style>
-		<Style Selector="ToggleButton:disabled /template/ ContentPresenter">
-			<Setter Property="Background" Value="#d7a1f9"></Setter>
-			<Setter Property="Foreground" Value="#3b3b3b"></Setter>
-		</Style>
 		<Style Selector="Button:disabled /template/ ContentPresenter">
 			<Setter Property="IsVisible" Value="True"></Setter>
 			<Setter Property="Background" Value="Gainsboro"></Setter>
@@ -98,22 +64,33 @@
 
 	<Grid RowDefinitions="*, 8*">
 		<Grid Grid.Row="0" Height="50" ColumnDefinitions="*, Auto, Auto" Background="Black">
-			<TextBlock Grid.Column="0" FontSize="20"  VerticalAlignment="Center" Margin="60, 0, 0, 0" Foreground="White">
-				<Run Text="AVALONIA" FontWeight="Black"></Run>
-				<Run Text="SAMPLE GUI" FontWeight="Medium"></Run>
+			<TextBlock Grid.Column="0" FontSize="20"  VerticalAlignment="Center" Margin="40, 0, 0, 0" Foreground="White">
+				<Run Text="Rappleye Lab" FontWeight="Black"></Run>
+				<Run Text="" FontSize="15" FontWeight="Medium"></Run>
 			</TextBlock>
 			<Button Name="BackButton" Grid.Column="1" Margin="0, 0, 20, 0" Padding="4, 1" x:CompileBindings="False"
         Command="{Binding $parent[Window].DataContext.BackScreen}" IsEnabled="{Binding CanBack}">Back</Button>
 			<Button Name="HelpButton" Grid.Column="2" Margin="0, 0, 20, 0" Padding="4, 1" Click="HelpHandler">Help</Button>
 		</Grid>
-		<Grid Grid.Row="1" RowDefinitions="0.5*, *, 5*, *" Background="White">
-			<TextBox Grid.Row="0" Name="PythonExeBox" Text="{Binding PythonExe, Mode=TwoWay}" Margin="10" IsEnabled="{Binding CanEditTextBox}"></TextBox>
-			<Grid Grid.Row="1" ColumnDefinitions="*, Auto">
-				<TextBlock Name="StatusText" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="Red" FontWeight="Bold" Text="{Binding StatusText}"></TextBlock>
-				<Button Grid.Column="1" Name="RunButton" Margin="20, 10, 20, 10" Command="{Binding RunCommand}" IsEnabled="{Binding CanRun}" HorizontalAlignment="Right">Run</Button>
+		<Grid Grid.Row="1" RowDefinitions="2*, 4*, 0.5*" Background="White">
+			<Grid Grid.Row="0" ColumnDefinitions="*, *">
+				<ScrollViewer>
+					<TextBlock Grid.Column="0" Margin="20" TextWrapping="Wrap" FontWeight="DemiBold">
+						This tool identifies "obvious" issues in genome annotations stored in .gff files.<LineBreak /> <LineBreak />
+						There is an expectation to meet certain preconditions on the user's end. This mainly consists of package installations and file naming conventions. <LineBreak /> <LineBreak />
+						For an exhaustive laundry list of preconditions, checks performed, limitations of the tool, and more, click Help.
+					</TextBlock>
+				</ScrollViewer>
+				<Grid Grid.Column="1" RowDefinitions="Auto, *">
+					<TextBox Grid.Row="0" Name="PythonExeBox" FontSize="13" Height="20" Text="{Binding PythonExe, Mode=TwoWay}" Margin="10, 20, 10, 10" IsEnabled="{Binding CanEditTextBox}" Watermark="Enter absolute path of python executable" HorizontalContentAlignment="Right"></TextBox>
+					<Grid Grid.Row="1" ColumnDefinitions="*, Auto">
+						<TextBlock Name="StatusText" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="Red" FontWeight="Bold" Text="{Binding StatusText}" TextWrapping="Wrap" ScrollViewer.VerticalScrollBarVisibility="Auto"></TextBlock>
+						<Button Grid.Column="1" Name="RunButton" Margin="20, 10, 20, 10" Command="{Binding RunCommand}" IsEnabled="{Binding CanRun}" HorizontalAlignment="Right">Run</Button>
+					</Grid>
+				</Grid>
 			</Grid>
-			<DataGrid Grid.Row="2" Name="ErrorGrid" Margin="10" ItemsSource="{Binding ErrorLines}"></DataGrid>
-			<ProgressBar Name="GffProgressBar" Grid.Row="3" Margin="10" Height="20" Minimum="0" Maximum="100" Foreground="Green" Background="Gainsboro" ShowProgressText="True" Value="{Binding ProgressVal, Mode=TwoWay}"></ProgressBar>
+			<DataGrid Grid.Row="1" Name="ErrorGrid" Margin="10" ItemsSource="{Binding ErrorLines}"></DataGrid>
+			<ProgressBar Name="GffProgressBar" Grid.Row="2" Margin="10" Height="20" Minimum="0" Maximum="100" Foreground="Green" Background="Gray" ShowProgressText="True" Value="{Binding ProgressVal, Mode=TwoWay}"></ProgressBar>
 		</Grid>
 	</Grid>
 	

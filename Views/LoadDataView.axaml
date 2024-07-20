@@ -94,9 +94,9 @@
 
 	<Grid RowDefinitions="*, 8*">
 		<Grid Grid.Row="0" Height="50" ColumnDefinitions="*, Auto, Auto" Background="Black">
-			<TextBlock Grid.Column="0" FontSize="20"  VerticalAlignment="Center" Margin="60, 0, 0, 0" Foreground="White">
-				<Run Text="AVALONIA" FontWeight="Black"></Run>
-				<Run Text="SAMPLE GUI" FontWeight="Medium"></Run>
+			<TextBlock Grid.Column="0" FontSize="20"  VerticalAlignment="Center" Margin="40, 0, 0, 0" Foreground="White">
+				<Run Text="Rappleye Lab" FontWeight="Black"></Run>
+				<Run Text="" FontWeight="Medium"></Run>
 			</TextBlock>
 			<Button Name="ContinueButton" Grid.Column="1" Margin="0, 0, 20, 0" Padding="4, 1" x:CompileBindings="False"
         Command="{Binding $parent[Window].DataContext.NextCommand}" CommandParameter="{Binding Directories}" IsEnabled="False">Continue</Button>
@@ -107,7 +107,7 @@
 			<Grid Grid.Column="0" RowDefinitions="*, *" Margin="10, 0, 10, 0" VerticalAlignment="Center">
 				<Grid Grid.Row="0" Background="Gainsboro" RowDefinitions="Auto, *, Auto" Margin="0, 0, 0, 10">
 					<TextBlock Grid.Row="0" HorizontalAlignment="Center" FontWeight="Bold" Foreground="Black">gff</TextBlock>
-					<ListBox Name="GFFListBox" Grid.Row="1" Foreground="Black" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" Margin="10" Background="White" SelectedItem="{Binding SelectedGFF, Mode=TwoWay}"></ListBox>
+					<ListBox Name="GFFListBox" Grid.Row="1" Foreground="Black" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" Margin="10" Background="White" SelectedItem="{Binding SelectedGFF, Mode=OneWayToSource}"></ListBox>
 					<Grid Grid.Row="2" ColumnDefinitions="*, *" HorizontalAlignment="Right">
 						<Button Name="PreviewButton" Grid.Column="0" VerticalAlignment="Center" Margin="0, 0, 10, 5" Padding="5, 0" FontSize="10" Command="{Binding GffPreviewCommand}">Preview</Button>
 						<Button Name="LoadGFF" Grid.Column="1" VerticalAlignment="Center" Margin="0, 0, 10, 5" Padding="5, 0" FontSize="10" Click="ShowGFFDialog">Load</Button>

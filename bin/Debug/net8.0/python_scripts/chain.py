@@ -208,22 +208,6 @@ class CDSChain(Chain):
         self._chain_name = "CDS Chain"
         self._fas_dir = fas_dir
 
-    def _construct_sequence(group, sequence):
-        curr_sequence = ""
-
-        #construct the sequence
-        for i in range(group.shape[0]):
-            curr_sequence += sequence[group.iloc[i, 3]-1 : group.iloc[i, 4]]
-        # reverse complement the sequence if the direction is negative - this is done easiest using the Bio.Seq module
-        if group.iloc[0, 6] == "-":
-            temp = Seq(curr_sequence)
-            curr_sequence = str(temp.reverse_complement())
-
-        elif group.iloc[0, 6] == ".":
-            raise ValueError("Error in Constructing CDS Sequence: CDS cannot have unkown direction")
-        
-        return curr_sequence
-    
     def _assemble_request_list(self, cds_groups, fas_seq) -> list[Request]:
         #preparing request list
         request_list = []

@@ -446,7 +446,7 @@ class StopCodonValidator(Validator):
             return True
     
     def _generate_error_message(self, stop_codon: str) -> None:
-        self._error_message = f"The stop codon is {stop_codon} and not one of TAG, TAA, or TGA"
+        self._error_message = f"The stop codon is {stop_codon} and not one of TAG/TAA/TGA"
 
 
 class PrematureStopCodonValidator(Validator):
