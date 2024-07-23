@@ -48,67 +48,76 @@ namespace RappleyeLabGUI.Views
 
             var top = TopLevel.GetTopLevel(this);
 
-
-            IReadOnlyList<IStorageFolder> folderPicked = await top.StorageProvider.OpenFolderPickerAsync(folderPicker);
-            if (folderPicked.Count != 0)
+            if (top is not null)
             {
-                string path = folderPicked[0].TryGetLocalPath();
-                if (path != null)
+                try
                 {
-                    FastaDummy.Text = path;
-                    DirectoryInfo fastaDirectory = new DirectoryInfo(path);
-                    FileInfo[] fastaFiles = fastaDirectory.GetFiles("*.fas");
-                    string[] fastaFilepaths = new string[fastaFiles.Length];
-
-                    if (fastaFiles.Length == 0)
+                    IReadOnlyList<IStorageFolder> folderPicked = await top.StorageProvider.OpenFolderPickerAsync(folderPicker);
+                    if (folderPicked.Count != 0)
                     {
-                        ValidFas = false;
-                        ContinueButton.IsEnabled = false;
-                    }
-                    else
-                    {
-                        ValidFas = true;
-                    }
-
-                    for (int i = 0; i < fastaFiles.Length; i++)
-                    {
-                        string filepath = fastaFiles[i].Name;
-                        fastaFilepaths[i] = Path.GetFileName(filepath);
-                    }
-
-                    if (fastaFilepaths.Length < 7)
-                    {
-                        int emptyElements = 7 - fastaFilepaths.Length;
-                        string[] tempFastaFilepaths = new string[7];
-                        for (int i = 0; i < 7; i++)
+                        var path = folderPicked[0].TryGetLocalPath();
+                        if (path != null)
                         {
-                            if (i < fastaFilepaths.Length)
+                            FastaDummy.Text = path;
+                            DirectoryInfo fastaDirectory = new DirectoryInfo(path);
+                            FileInfo[] fastaFiles = fastaDirectory.GetFiles("*.fas");
+                            string[] fastaFilepaths = new string[fastaFiles.Length];
+
+                            if (fastaFiles.Length == 0)
                             {
-                                tempFastaFilepaths[i] = fastaFilepaths[i];
+                                ValidFas = false;
+                                ContinueButton.IsEnabled = false;
                             }
                             else
                             {
-                                tempFastaFilepaths[i] = "";
+                                ValidFas = true;
+                            }
+
+                            for (int i = 0; i < fastaFiles.Length; i++)
+                            {
+                                string filepath = fastaFiles[i].Name;
+                                fastaFilepaths[i] = Path.GetFileName(filepath);
+                            }
+
+                            if (fastaFilepaths.Length < 7)
+                            {
+                                int emptyElements = 7 - fastaFilepaths.Length;
+                                string[] tempFastaFilepaths = new string[7];
+                                for (int i = 0; i < 7; i++)
+                                {
+                                    if (i < fastaFilepaths.Length)
+                                    {
+                                        tempFastaFilepaths[i] = fastaFilepaths[i];
+                                    }
+                                    else
+                                    {
+                                        tempFastaFilepaths[i] = "";
+                                    }
+                                }
+                                FastaListBox.ItemsSource = tempFastaFilepaths.ToArray();
+                            }
+                            else
+                            {
+                                FastaListBox.ItemsSource = fastaFilepaths.ToArray();
                             }
                         }
-                        FastaListBox.ItemsSource = tempFastaFilepaths.ToArray();
                     }
-                    else
+
+                    if (CanContinue())
                     {
-                        FastaListBox.ItemsSource = fastaFilepaths.ToArray();
+                        string gffDir = GffDummy.Text ?? "";
+                        string fastaDir = FastaDummy.Text ?? "";
+                        DirectoryDummy.ItemsSource = new string[] { gffDir, fastaDir };
+                        ContinueButton.IsEnabled = true;
                     }
                 }
-            }
+                catch
+                {
 
-            if (CanContinue())
-            {
-                string gffDir = GffDummy.Text;
-                string fastaDir = FastaDummy.Text;
-                DirectoryDummy.ItemsSource = new string[] {gffDir, fastaDir};
-                ContinueButton.IsEnabled = true;
+                }
+                
             }
         }
-
 
         public async void ShowGFFDialog(object sender, RoutedEventArgs e)
         {
@@ -118,63 +127,74 @@ namespace RappleyeLabGUI.Views
 
             var top = TopLevel.GetTopLevel(this);
 
-            IReadOnlyList<IStorageFolder> folderPicked = await top.StorageProvider.OpenFolderPickerAsync(folderPicker);
-            if (folderPicked.Count != 0)
-            {
-                string path = folderPicked[0].TryGetLocalPath();
-                if (path != null)
+            if (top is not null)
+            {   
+                try
                 {
-                    GffDummy.Text = path;
-                    DirectoryInfo gffDirectory = new DirectoryInfo(path);
-                    FileInfo[] gffFiles = gffDirectory.GetFiles("*.gff");
-                    string[] gffFilepaths = new string[gffFiles.Length];
-
-                    if (gffFiles.Length == 0)
+                    IReadOnlyList<IStorageFolder> folderPicked = await top.StorageProvider.OpenFolderPickerAsync(folderPicker);
+                    if (folderPicked.Count != 0)
                     {
-                        ValidGff = false;
-                        ContinueButton.IsEnabled = false;
-                    }
-                    else
-                    {
-                        ValidGff = true;
-                    }
-
-                    for (int i = 0; i < gffFiles.Length; i++)
-                    {
-                        string filepath = gffFiles[i].Name;
-                        gffFilepaths[i] = Path.GetFileName(filepath);
-                    }
-
-                    if (gffFilepaths.Length < 7)
-                    {
-                        int emptyElements = 7 - gffFilepaths.Length;
-                        string[] tempGFFFilepaths = new string[7];
-                        for (int i = 0; i < 7; i++)
+                        var path = folderPicked[0].TryGetLocalPath();
+                        if (path != null)
                         {
-                            if (i < gffFilepaths.Length)
+                            GffDummy.Text = path;
+                            DirectoryInfo gffDirectory = new DirectoryInfo(path);
+                            FileInfo[] gffFiles = gffDirectory.GetFiles("*.gff");
+                            string[] gffFilepaths = new string[gffFiles.Length];
+
+                            if (gffFiles.Length == 0)
                             {
-                                tempGFFFilepaths[i] = gffFilepaths[i];
+                                ValidGff = false;
+                                ContinueButton.IsEnabled = false;
                             }
                             else
                             {
-                                tempGFFFilepaths[i] = "";
+                                ValidGff = true;
+                            }
+
+                            for (int i = 0; i < gffFiles.Length; i++)
+                            {
+                                string filepath = gffFiles[i].Name;
+                                gffFilepaths[i] = Path.GetFileName(filepath);
+                            }
+
+                            if (gffFilepaths.Length < 7)
+                            {
+                                int emptyElements = 7 - gffFilepaths.Length;
+                                string[] tempGFFFilepaths = new string[7];
+                                for (int i = 0; i < 7; i++)
+                                {
+                                    if (i < gffFilepaths.Length)
+                                    {
+                                        tempGFFFilepaths[i] = gffFilepaths[i];
+                                    }
+                                    else
+                                    {
+                                        tempGFFFilepaths[i] = "";
+                                    }
+                                }
+                                GFFListBox.ItemsSource = tempGFFFilepaths.ToArray();
+                            }
+                            else
+                            {
+                                GFFListBox.ItemsSource = gffFilepaths.ToArray();
                             }
                         }
-                        GFFListBox.ItemsSource = tempGFFFilepaths.ToArray();
                     }
-                    else
+
+                    if (CanContinue())
                     {
-                        GFFListBox.ItemsSource = gffFilepaths.ToArray();
+                        string gffDir = GffDummy.Text ?? "";
+                        string fastaDir = FastaDummy.Text ?? "";
+                        DirectoryDummy.ItemsSource = new string[] { gffDir, fastaDir };
+                        ContinueButton.IsEnabled = true;
                     }
                 }
-            }
+                catch
+                {
 
-            if (CanContinue())
-            {
-                string gffDir = GffDummy.Text;
-                string fastaDir = FastaDummy.Text;
-                DirectoryDummy.ItemsSource = new string[] { gffDir, fastaDir };
-                ContinueButton.IsEnabled = true;
+                }
+                
             }
         }
     }

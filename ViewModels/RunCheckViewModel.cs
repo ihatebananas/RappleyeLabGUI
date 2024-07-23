@@ -25,6 +25,7 @@ namespace RappleyeLabGUI.ViewModels
         private bool _canRun;
         private bool _canBack;
         private bool _canEditTextBox;
+        private bool _canSave;
         private int _progressVal;
         private string _statusText;
         private ObservableCollection<ErrorLine> _errorLines;
@@ -33,15 +34,26 @@ namespace RappleyeLabGUI.ViewModels
 
         public RunCheckViewModel(string gffDirectory, string fastaDirectory)
         {
+            _canSave = false;
             _gffDir = gffDirectory;
             _fastaDir = fastaDirectory;
-            _pythonExe = "";
             _canRun = false;
             _errorLines = new ObservableCollection<ErrorLine>();
             _progressVal = 0;
             _canBack = true;
             _canEditTextBox = true;
             _statusText = "";
+
+            var lines = File.ReadAllLines("pythonexepath.txt");
+            if (lines.Length > 0)
+            {
+                _pythonExe = lines[0];
+                _canRun = true;
+            }
+            else
+            {
+                _pythonExe = "";
+            }
 
             RunCommand = ReactiveCommand.Create(RunChecks);
 
@@ -94,6 +106,7 @@ namespace RappleyeLabGUI.ViewModels
             ProgressVal = 0;
             CanRun = false;
             CanBack = false;
+            CanSave = false;
             CanEditTextBox = false;
 
             string error_header = "filename,error_type,identifier,error_message";
@@ -116,7 +129,7 @@ namespace RappleyeLabGUI.ViewModels
                 }
                 else if (result == "python exe filepath is incorrect")
                 {
-                    StatusText = "python.exe path is incorrect--please re-enter";
+                    StatusText = "python.exe path is incorrect";
                     ProgressVal = 100;
                     break;
                 }
@@ -139,6 +152,8 @@ namespace RappleyeLabGUI.ViewModels
             StreamReader inputStream = new StreamReader(filepath);
             var errorLines = new List<ErrorLine>();
             inputStream.ReadLine();
+            int count = 1;
+            bool can_save = false;
 
             while (!inputStream.EndOfStream)
             {
@@ -146,10 +161,21 @@ namespace RappleyeLabGUI.ViewModels
                 if (line != null)
                 {
                     var errorVals = line.Split(',');
-                    ErrorLine currError = new ErrorLine(errorVals[0], errorVals[1], errorVals[2], errorVals[3]);
+                    ErrorLine currError = new ErrorLine(count, errorVals[0], errorVals[1], errorVals[2], errorVals[3]);
                     errorLines.Add(currError);
-                }
+                    count++;
 
+                    can_save = true;
+                }
+            }
+
+            if (can_save)
+            {
+                CanSave = true;
+            }
+            else
+            {
+                CanSave = false;
             }
 
             ErrorLines = new ObservableCollection<ErrorLine>(errorLines);
@@ -183,6 +209,8 @@ namespace RappleyeLabGUI.ViewModels
                 {
                     CanRun = false;
                 }
+
+                File.WriteAllText("pythonexepath.txt", _pythonExe);
             }
         }
 
@@ -202,6 +230,12 @@ namespace RappleyeLabGUI.ViewModels
         {
             get => _canEditTextBox;
             set => this.RaiseAndSetIfChanged(ref _canEditTextBox, value);
+        }
+
+        public bool CanSave
+        {
+            get => _canSave;
+            set => this.RaiseAndSetIfChanged(ref _canSave, value);
         }
 
         public ObservableCollection<ErrorLine> ErrorLines

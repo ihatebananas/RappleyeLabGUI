@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 public class GFFFeature
 {
+    public int n { get; set; }
     public string contig_name { get; set; }
     public string source { get; set; }
     public string feature { get; set; }
@@ -17,8 +18,9 @@ public class GFFFeature
     public string dots { get; set; }
     public string attribute { get; set; }
 
-    public GFFFeature(string contig_name, string source, string feature, int start, int stop, double zeroes, string direction, string dots, string attribute)
+    public GFFFeature(int Num, string contig_name, string source, string feature, int start, int stop, double zeroes, string direction, string dots, string attribute)
     {
+        this.n = Num;
         this.contig_name = contig_name;
         this.source = source;
         this.feature = feature;

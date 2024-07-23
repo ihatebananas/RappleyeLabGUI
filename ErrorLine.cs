@@ -7,18 +7,19 @@ using System.Threading.Tasks;
 
 public class ErrorLine
 {
-    
-    public string FileName { get; set; }
-    public string ErrorType { get; set; }
-    public string Identifier { get; set; }
-    public string ErrorMessage { get; set; }
+    public int n { get; set; }
+    public string filename { get; set; }
+    public string error_type { get; set; }
+    public string identifier { get; set; }
+    public string error_message { get; set; }
 
-    public ErrorLine(string FileName, string ErrorType, string Identifier, string ErrorMessage)
+    public ErrorLine(int Num, string FileName, string ErrorType, string Identifier, string ErrorMessage)
     {
-        this.FileName = FileName;
-        this.ErrorType = ErrorType;
-        this.Identifier = Identifier;
-        this.ErrorMessage = ErrorMessage;
+        this.n = Num;
+        this.filename = FileName;
+        this.error_type = ErrorType;
+        this.identifier = Identifier;
+        this.error_message = ErrorMessage;
     }
 }
 
