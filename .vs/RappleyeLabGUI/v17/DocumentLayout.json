@@ -1,12 +1,36 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\itz_s\\Desktop\\AvaloniaGUI\\RappleyeLabGUI\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{DCDD1862-D983-4861-862A-4D7D49A694B6}|RappleyeLabGUI.csproj|c:\\users\\itz_s\\desktop\\avaloniagui\\rappleyelabgui\\views\\helpwindow.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
+      "RelativeMoniker": "D:0:0:{DCDD1862-D983-4861-862A-4D7D49A694B6}|RappleyeLabGUI.csproj|solutionrelative:views\\helpwindow.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "HelpWindow.axaml",
+              "DocumentMoniker": "C:\\Users\\itz_s\\Desktop\\AvaloniaGUI\\RappleyeLabGUI\\Views\\HelpWindow.axaml",
+              "RelativeDocumentMoniker": "Views\\HelpWindow.axaml",
+              "ToolTip": "C:\\Users\\itz_s\\Desktop\\AvaloniaGUI\\RappleyeLabGUI\\Views\\HelpWindow.axaml",
+              "RelativeToolTip": "Views\\HelpWindow.axaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-07-29T19:48:29.665Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }

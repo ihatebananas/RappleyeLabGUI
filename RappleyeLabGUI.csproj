@@ -13,6 +13,7 @@
   </ItemGroup>
     
   <ItemGroup>
+    <None Remove="Assets\DNA_Double_Helix.png" />
     <None Remove="Assets\Fonts\CourierPrime-Bold.ttf" />
     <None Remove="Assets\Fonts\CourierPrime-BoldItalic.ttf" />
     <None Remove="Assets\Fonts\CourierPrime-Italic.ttf" />

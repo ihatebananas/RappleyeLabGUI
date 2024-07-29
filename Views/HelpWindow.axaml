@@ -8,11 +8,11 @@
 		Width="400" Height="400"
         x:Class="RappleyeLabGUI.Views.HelpWindow"
 		x:DataType="vm:HelpViewModel"
-        Icon="/Assets/avalonia-logo.ico"
+        Icon="avares://RappleyeLabGUI/Assets/DNA_Double_Helix.png"
         Title="Help Window">
 
 	<ScrollViewer>
-		<Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto" Margin="2">
+		<Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto" Margin="2">
 			<Expander Header="Package Requirements" VerticalAlignment="Top" HorizontalAlignment="Stretch" Grid.Row="0" Margin="2, 0, 2, 0">
 				<SelectableTextBlock TextWrapping="Wrap" FontSize="13">
 					This tool requires the user to have Python installed locally, and a text editor or IDE to go along with it. A popular choice is the text editor, VS Code. 
@@ -52,8 +52,7 @@
 							<Run FontFamily="{StaticResource CourierFont}" Foreground="Black">sys</Run>
 							<LineBreak></LineBreak>
 							<LineBreak></LineBreak>
-							<Run FontFamily="{StaticResource CourierFont}" Foreground="Blue">print</Run>
-							<Run xml:space="preserve" FontFamily="{StaticResource CourierFont}" Foreground="Black">(sys.executable)</Run>
+							<Run FontFamily="{StaticResource CourierFont}" Foreground="Blue">print</Run><Run FontFamily="{StaticResource CourierFont}" Foreground="Black">(sys.executable)</Run>
 						</SelectableTextBlock>
 					</Border>
 					<LineBreak></LineBreak><LineBreak></LineBreak>
@@ -123,7 +122,7 @@
 				<SelectableTextBlock FontSize="13" TextWrapping="Wrap">
 					A number of issues may arise that interfere with the analyses. Before getting into details, the user is urged to double check the following:  <LineBreak></LineBreak> <LineBreak></LineBreak>
 					1. Python is installed (version 3.11 or higher).  <LineBreak></LineBreak>  <LineBreak></LineBreak>
-					2. The Python packages, pandas and Biopython, are installed.  <LineBreak></LineBreak>  <LineBreak></LineBreak>
+					2. The Python packages, pandas and Biopython, are installed and up to date.  <LineBreak></LineBreak>  <LineBreak></LineBreak>
 					3. All .gff and .fas files only contain information for one contig.  <LineBreak></LineBreak>  <LineBreak></LineBreak>
 					4. The filenames for .fas files are the names of the corresponding contigs.  <LineBreak></LineBreak>  <LineBreak></LineBreak>
 					5. All .gff files do not have headers for the column names.  <LineBreak></LineBreak>  <LineBreak></LineBreak>
@@ -165,6 +164,30 @@
 					Should the application deviate from expected behavior, the user has no choice but to contact the maintainer. The following Outlook address should work for the time being: <LineBreak></LineBreak><LineBreak></LineBreak>
 					<Run FontFamily="{StaticResource CourierFont}">sripadhanallurnatarajan.1@buckeyemail.osu.edu</Run>
 
+				</SelectableTextBlock>
+			</Expander>
+			<Expander Header="Credits" VerticalAlignment="Top" HorizontalAlignment="Stretch" Grid.Row="6" Margin="2, 0, 2, 0">
+				<SelectableTextBlock FontSize="13" TextWrapping="Wrap">
+					This application was developed as part of the Rappleye Lab in the Microbiology department at The Ohio State University. <LineBreak></LineBreak> <LineBreak></LineBreak>
+					We wish to thank the following individuals or communities for their direct or indirect contribution to this project: <LineBreak></LineBreak> <LineBreak></LineBreak>
+
+					<Run FontFamily="{StaticResource CourierFont}" FontWeight="Heavy" FontSize="15">Dr. Chad Rappleye</Run> <LineBreak></LineBreak> <LineBreak></LineBreak>
+					Dr. Rappleye oversaw this project, and was a primary part of the development of the error checking used in this application. <LineBreak></LineBreak><LineBreak></LineBreak>
+					<Run FontFamily="{StaticResource CourierFont}" FontWeight="Heavy" FontSize="15">Arvind S Natarajan</Run><LineBreak></LineBreak> <LineBreak></LineBreak>
+					This project began with a collection of Python files Arvind had created to identify errors in genome annotations, which he has since helped expand. The Python code for the analysis of genome annotations is almost entirely his work, and he has kindly assisted with testing UI elements as well. <LineBreak></LineBreak><LineBreak></LineBreak>
+					<Run FontFamily="{StaticResource CourierFont}" FontWeight="Heavy" FontSize="15">Shravan Sripadhanallur Natarajan</Run><LineBreak></LineBreak> <LineBreak></LineBreak>
+					Shravan was involved with the development of the Python scripts, and developed all UI elements for this application. He is also the writer of what the user is reading. <LineBreak></LineBreak> <LineBreak></LineBreak><Run FontFamily="{StaticResource CourierFont}" FontStyle="Italic">He is currently the only maintainer of this project, so please contact him, and only him about the application. Go to the bottom of this section to find his current email.</Run><LineBreak></LineBreak> <LineBreak></LineBreak>
+					<Run FontFamily="{StaticResource CourierFont}" FontWeight="Heavy" FontSize="15">AvaloniaUI Contributors</Run><LineBreak></LineBreak> <LineBreak></LineBreak>
+					The UI of this application was developed using AvaloniaUI. They are an open source, cross-platform UI framework for .NET. They may be found at: <LineBreak></LineBreak><LineBreak></LineBreak>
+					<Run FontFamily="{StaticResource CourierFont}">https://avaloniaui.net/</Run> <LineBreak></LineBreak> <LineBreak></LineBreak>
+					<Run FontFamily="{StaticResource CourierFont}" FontWeight="Heavy" FontSize="15">The pandas Development Team</Run><LineBreak></LineBreak> <LineBreak></LineBreak>
+					The Python package, pandas, is extensively used for the analysis of .gff files in this application. They can be found at: <LineBreak></LineBreak> <LineBreak></LineBreak>
+					<Run FontFamily="{StaticResource CourierFont}">https://pandas.pydata.org/</Run> <LineBreak></LineBreak> <LineBreak></LineBreak>
+					<Run FontFamily="{StaticResource CourierFont}" FontWeight="Heavy" FontSize="15">The Biopython Development Team</Run><LineBreak></LineBreak> <LineBreak></LineBreak>
+					The Biopython package was used to facilitate the analysis of .fas and .gff files. They can be found at: <LineBreak></LineBreak> <LineBreak></LineBreak>
+					<Run FontFamily="{StaticResource CourierFont}">https://biopython.org/</Run> <LineBreak></LineBreak> <LineBreak></LineBreak> <LineBreak></LineBreak>
+
+					If any contributor was missed or incorrectly cited, please contact: <LineBreak></LineBreak><LineBreak></LineBreak><Run FontFamily="{StaticResource CourierFont}">sripadhanallurnatarajan.1@buckeyemail.osu.edu</Run><LineBreak></LineBreak><LineBreak></LineBreak>We apologize in advance for any such oversight. 
 				</SelectableTextBlock>
 			</Expander>
 
