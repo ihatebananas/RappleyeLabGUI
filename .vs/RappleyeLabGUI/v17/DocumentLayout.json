@@ -1,37 +1,12 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\itz_s\\Desktop\\AvaloniaGUI\\RappleyeLabGUI\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{DCDD1862-D983-4861-862A-4D7D49A694B6}|RappleyeLabGUI.csproj|c:\\users\\itz_s\\desktop\\avaloniagui\\rappleyelabgui\\rappleyelabgui.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{DCDD1862-D983-4861-862A-4D7D49A694B6}|RappleyeLabGUI.csproj|solutionrelative:rappleyelabgui.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": [
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 0,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "RappleyeLabGUI",
-              "DocumentMoniker": "C:\\Users\\itz_s\\Desktop\\AvaloniaGUI\\RappleyeLabGUI\\RappleyeLabGUI.csproj",
-              "RelativeDocumentMoniker": "RappleyeLabGUI.csproj",
-              "ToolTip": "C:\\Users\\itz_s\\Desktop\\AvaloniaGUI\\RappleyeLabGUI\\RappleyeLabGUI.csproj",
-              "RelativeToolTip": "RappleyeLabGUI.csproj",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAEAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2024-07-29T09:32:21.107Z",
-              "EditorCaption": ""
-            }
-          ]
-        }
-      ]
+      "DocumentGroups": []
     }
   ]
 }
