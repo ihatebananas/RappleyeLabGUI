@@ -1,0 +1,5 @@
+C:\Users\itz_s\Desktop\RappleyeLabGUI MacOS\RappleyeLabGUI.pdb
+C:\Users\itz_s\Desktop\RappleyeLabGUI MacOS\libAvaloniaNative.dylib
+C:\Users\itz_s\Desktop\RappleyeLabGUI MacOS\libHarfBuzzSharp.dylib
+C:\Users\itz_s\Desktop\RappleyeLabGUI MacOS\libSkiaSharp.dylib
+C:\Users\itz_s\Desktop\RappleyeLabGUI MacOS\RappleyeLabGUI

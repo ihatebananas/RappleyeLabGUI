@@ -11,5 +11,164 @@
         Icon="/Assets/avalonia-logo.ico"
         Title="Help Window">
 
-	<TextBlock Margin="20">Hello World</TextBlock>
+	<ScrollViewer>
+		<Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto" Margin="2">
+			<Expander Header="Package Requirements" VerticalAlignment="Top" HorizontalAlignment="Stretch" Grid.Row="0" Margin="2, 0, 2, 0">
+				<SelectableTextBlock TextWrapping="Wrap" FontSize="13">
+					This tool requires the user to have Python installed locally, and a text editor or IDE to go along with it. A popular choice is the text editor, VS Code. 
+					As of August, 2024, this tool will work with all Python versions 3.11 and later. <LineBreak></LineBreak> <LineBreak></LineBreak>
+
+					The following Python packages are required: <LineBreak></LineBreak><LineBreak></LineBreak>
+					<TabControl></TabControl>1. Pandas <LineBreak></LineBreak>
+					<TabControl></TabControl>2. Biopython <LineBreak></LineBreak> <LineBreak></LineBreak>
+					The most painless way to do this is to use Python's package installer, pip. In-depth guides may be found on the internet. 
+				</SelectableTextBlock>
+			</Expander>
+			<Expander Header="Conventions" VerticalAlignment="Top" HorizontalAlignment="Stretch" Grid.Row="1" Margin="2, 0, 2, 0">
+				<SelectableTextBlock TextWrapping="Wrap" FontSize="13">
+					Any .gff files are expected to only contain annotations for one contig. Likewise, any .fas files are expected to only contain information about one contig. <LineBreak></LineBreak> <LineBreak></LineBreak>
+					There must be no headers on .gff files. The top-left-most element in the .gff file is assumed as the contig name.
+					With this definition, all corresponding .fas files are expected to be named after the contig name. <LineBreak></LineBreak><LineBreak></LineBreak>
+					For example, if one of the contigs is named "ABC_Contig123", then the program will look for a .fas file by the filename "ABC_Contig123.fas". <LineBreak></LineBreak> <LineBreak></LineBreak>
+					There is no naming convention required for .gff files, though of course the use of one is advised. 
+				</SelectableTextBlock>
+			</Expander>
+			<Expander Header="How To" VerticalAlignment="Top" HorizontalAlignment="Stretch" Grid.Row="2" Margin="2, 0, 2, 0">
+				<SelectableTextBlock TextWrapping="Wrap" FontSize="13">
+					The user first sees the "Load" page. Here, the user is expected to load a folder of .gff files, and a folder of the corresponding .fas files.
+					The user should see a folder dialog upon clicking "Load". If not, go to Troubleshoot.
+
+					<LineBreak></LineBreak><LineBreak></LineBreak>
+					
+					The tool filters out .gff and .fas files from the entered folders, and displays them on the left. So, the existence of other files should pose no issue. This also means all .gff and .fas files can exist in the same directory. 
+					The tool will only enable the Continue button when the entered directories contain at least one .gff or .fas file. <LineBreak></LineBreak> <LineBreak></LineBreak>
+					The Preview button allows the user to view the table stored in the .gff file. This exists simply to double-check the files. <LineBreak></LineBreak><LineBreak></LineBreak>
+					When the user is ready to move on, they may click "Continue". <LineBreak></LineBreak> <LineBreak></LineBreak>
+					In the next page, the user is expected to provide the path to the local python.exe file. This can be achieved with the following Python code: <LineBreak></LineBreak>
+					<LineBreak></LineBreak>
+					<Border Background="Gainsboro" CornerRadius="5" Width="350">
+						<SelectableTextBlock Margin="10" FontSize="12">
+							<Run FontFamily="{StaticResource CourierFont}" Foreground="Blue">import</Run>
+							<Run FontFamily="{StaticResource CourierFont}" Foreground="Black">sys</Run>
+							<LineBreak></LineBreak>
+							<LineBreak></LineBreak>
+							<Run FontFamily="{StaticResource CourierFont}" Foreground="Blue">print</Run>
+							<Run xml:space="preserve" FontFamily="{StaticResource CourierFont}" Foreground="Black">(sys.executable)</Run>
+						</SelectableTextBlock>
+					</Border>
+					<LineBreak></LineBreak><LineBreak></LineBreak>
+					Entering this filepath to the TextBox will, ideally, be a one-time entry. As long as the user does not change the path, it will be preserved for future uses of the application. <LineBreak></LineBreak><LineBreak></LineBreak>
+					The user may now click Run to perform error checks on the .gff files. If the tool claims a wrong python.exe path was entered, visit Troubleshoot. <LineBreak></LineBreak> <LineBreak></LineBreak>
+					The error file is stored as a CSV file. If the user wishes to download it in a custom directory, click Save to open a file save dialog. 
+					<LineBreak></LineBreak><LineBreak></LineBreak>
+					
+					If the application displayed any behavior not aligning to the above directions, visit Troubleshoot. 
+				</SelectableTextBlock>
+			</Expander>
+			<Expander Header="Errors Checked" VerticalAlignment="Top" HorizontalAlignment="Stretch" Grid.Row="3" Margin="2, 0, 2, 0">
+				<SelectableTextBlock TextWrapping="Wrap" FontSize="13">
+					The errors checked by this tool are separated into four categories: <LineBreak></LineBreak><LineBreak></LineBreak>
+					<TabControl></TabControl>1. GFF Integrity <LineBreak></LineBreak>
+					<TabControl></TabControl>2. GFF Structure <LineBreak></LineBreak>
+					<TabControl></TabControl>3. Splice Sites <LineBreak></LineBreak>
+					<TabControl></TabControl>4. CDS <LineBreak></LineBreak> <LineBreak></LineBreak> <LineBreak></LineBreak>
+
+					<Bold>GFF Integrity checks for the following criteria: </Bold><LineBreak></LineBreak><LineBreak></LineBreak>
+					- GFF table has nine columns <LineBreak></LineBreak> <LineBreak></LineBreak>
+					- GFF table does not contain null values (outside of source, zeroes, dots). <LineBreak></LineBreak> <LineBreak></LineBreak>
+					- All annotated features must be one of "gene", "mRNA", "exon", or "CDS". <LineBreak></LineBreak> <LineBreak></LineBreak>
+					- All annotated directions must be one of "-", "+", ".". <LineBreak></LineBreak> <LineBreak></LineBreak>
+					- All annotated starts and stops must be numeric strings. Note that decimal points are not allowed in numeric strings. <LineBreak></LineBreak> <LineBreak></LineBreak> <LineBreak></LineBreak>
+
+					<Bold>GFF Structure checks for the following criteria: </Bold><LineBreak></LineBreak><LineBreak></LineBreak>
+					- Feature overlaps. <LineBreak></LineBreak> <LineBreak></LineBreak>
+					- Direction consistency. For example, two exons under the same gene cannot have different directions. Likewise, an exon under a gene cannot have a different direction to the gene.<LineBreak></LineBreak> <LineBreak></LineBreak>
+					- CDS must be contained within the gene, whereas exon, mRNA must start and end with the gene. <LineBreak></LineBreak> <LineBreak></LineBreak> <LineBreak></LineBreak>
+
+					<Bold>Splice Site checks for the following criteria: </Bold> <LineBreak></LineBreak><LineBreak></LineBreak>
+					- Intron direction must be forward or reverse.  <LineBreak></LineBreak> <LineBreak></LineBreak>
+					- Start splice must be "GT" or "GC" (to be changed). <LineBreak></LineBreak> <LineBreak></LineBreak>
+					- End splice must be "AG". <LineBreak></LineBreak> <LineBreak></LineBreak> <LineBreak></LineBreak>
+
+					<Bold>CDS checks for the following criteria:</Bold> <LineBreak></LineBreak><LineBreak></LineBreak>
+					- CDS must have forward or reverse direction. <LineBreak></LineBreak> <LineBreak></LineBreak>
+					- Start codon must be "ATG". <LineBreak></LineBreak> <LineBreak></LineBreak>
+					- Stop codon must be "TAG", "TAA", or "TGA". <LineBreak></LineBreak> <LineBreak></LineBreak>
+					- CDS annotation does not stop too late (that is, earlier valid stop codons exist). <LineBreak></LineBreak> <LineBreak></LineBreak>
+					- CDS does not have a partial codon (length is divisible by three). 
+					
+				</SelectableTextBlock>
+			</Expander>
+			<Expander Header="The Error Table" VerticalAlignment="Top" HorizontalAlignment="Stretch" Grid.Row="4" Margin="2, 0, 2, 0">
+				<SelectableTextBlock FontSize="13" TextWrapping="Wrap">
+					The error table consists of four columns. Namely, "filename", "error_type", "identifier", and "error_message". <LineBreak></LineBreak><LineBreak></LineBreak>
+					
+					The <Bold>filename</Bold> is the .gff file that errors were found in. Note that as of this moment, this tool only supports single contig .gff files. <LineBreak></LineBreak><LineBreak></LineBreak>
+					The <Bold>error type</Bold> is one of the four subdivisions of errors discussed in "Errors Checked". <LineBreak></LineBreak><LineBreak></LineBreak>
+					The <Bold>identifier</Bold> is a varying field that identifies where the error has occurred. The different kinds of identifiers are as follows:<LineBreak></LineBreak> <LineBreak></LineBreak>
+
+					- GFF Integrity errors have integer identifiers. These integers represent line numbers in the .gff file given by "filename". <LineBreak></LineBreak><LineBreak></LineBreak>
+					- GFF Structure errors also have integer identifiers, with the same purpose. <LineBreak></LineBreak><LineBreak></LineBreak>
+					- Splice Site error identifiers have the ID of the gene, and coordinates within which the error may be found. <LineBreak></LineBreak><LineBreak></LineBreak>
+					- CDS error identifiers have the contig name, and coordinates. <LineBreak></LineBreak><LineBreak></LineBreak>
+
+					- CDS error identifiers have the contig name, and coordinates. <LineBreak></LineBreak><LineBreak></LineBreak>
+					The <Bold>error message</Bold> is a more thorough description of the error. Here, the specific error found is explained. If the identifier is not descriptive enough, this is where the user may find details.  <LineBreak></LineBreak> <LineBreak></LineBreak> <LineBreak></LineBreak> <LineBreak></LineBreak>
+
+					It is important to note that there is a pecking order to errors. Part of the reason for the division of errors is the preprocessing of data required, but it is largely also to screen for fundamental errors that prohibit further analysis. The order of errors as such is as presented in "Errors Checked".   <LineBreak></LineBreak> <LineBreak></LineBreak>
+					For example, if a GFF Integrity error is found, the program <Bold>will not run any more checks</Bold>. Thus, it is entirely conceivable that "new" errors pop up as the user fixes certain errors. 
+				</SelectableTextBlock>
+			</Expander>
+			<Expander Header="Troubleshooting" VerticalAlignment="Top" HorizontalAlignment="Stretch" Grid.Row="5" Margin="2, 0, 2, 0">
+				<SelectableTextBlock FontSize="13" TextWrapping="Wrap">
+					A number of issues may arise that interfere with the analyses. Before getting into details, the user is urged to double check the following:  <LineBreak></LineBreak> <LineBreak></LineBreak>
+					1. Python is installed (version 3.11 or higher).  <LineBreak></LineBreak>  <LineBreak></LineBreak>
+					2. The Python packages, pandas and Biopython, are installed.  <LineBreak></LineBreak>  <LineBreak></LineBreak>
+					3. All .gff and .fas files only contain information for one contig.  <LineBreak></LineBreak>  <LineBreak></LineBreak>
+					4. The filenames for .fas files are the names of the corresponding contigs.  <LineBreak></LineBreak>  <LineBreak></LineBreak>
+					5. All .gff files do not have headers for the column names.  <LineBreak></LineBreak>  <LineBreak></LineBreak>
+
+					The rest of this section shall be used to document the possible issues the user may run into during the usage of this tool.  <LineBreak></LineBreak>  <LineBreak></LineBreak> <LineBreak></LineBreak>
+
+					<Run FontSize="15" FontWeight="Bold">Load Page</Run>  <LineBreak></LineBreak>  <LineBreak></LineBreak>
+					<Run FontSize="14" FontWeight="Medium">I. Load buttons are unresponsive or fail</Run>  <LineBreak></LineBreak> <LineBreak></LineBreak>
+					The only known reason for this is that the local machine does not support folder dialogs. Unfortunately, if this were the case, the user's machine cannot utilize this application. <LineBreak></LineBreak><LineBreak></LineBreak>
+					If the folder dialog opens, a folder was picked, and yet no file shows up in the appropriate box on the left, this means no file of the appropriate extension was found in the entered directory. <LineBreak></LineBreak><LineBreak></LineBreak>
+					<Run FontSize="14" FontWeight="Medium">II. Preview button is unresponsive</Run>  <LineBreak></LineBreak> <LineBreak></LineBreak>
+					The only known reason for this is that the .gff file selected cannot be opened. This is also an indication that the tool will not work as advertised, since the analysis depends on opening the .gff file. <LineBreak></LineBreak><LineBreak></LineBreak>
+					<Run FontSize="14" FontWeight="Medium">III. Continue button is unresponsive, or disabled</Run>  <LineBreak></LineBreak> <LineBreak></LineBreak>
+					The Continue button only enables after valid directories for both .fas and .gff files are entered. A valid directory for each is one that contains at least one file of the appropriate extension. <LineBreak></LineBreak><LineBreak></LineBreak>
+					If the Continue button is disabled even after both boxes on the left are non-empty, or if the Continue button is simple unresponsive, this breaks known behavior of the application. Go to the bottom of this section. <LineBreak></LineBreak><LineBreak></LineBreak>
+					<Run FontSize="14" FontWeight="Medium">IV. Application crash</Run>  <LineBreak></LineBreak> <LineBreak></LineBreak> 
+					This must not happen. Go to the bottom of this section. <LineBreak></LineBreak><LineBreak></LineBreak><LineBreak></LineBreak>
+
+					<Run FontSize="15" FontWeight="Bold">Run Page</Run>  <LineBreak></LineBreak>  <LineBreak></LineBreak>
+					<Run FontSize="14" FontWeight="Medium">I. Run button is unresponsive</Run>  <LineBreak></LineBreak> <LineBreak></LineBreak>
+					If the Run button is pressed, and there is no response from the UI, then check if the application folder contains a file by the name, "output_file.csv". If not, add it. There is no need to edit its contents. If the issue persists, go to the bottom of this section. <LineBreak></LineBreak> <LineBreak></LineBreak>
+					<Run FontSize="14" FontWeight="Medium">II. Save button is unresponsive or fails</Run>  <LineBreak></LineBreak> <LineBreak></LineBreak>
+					This likely means the local machine is unable to open a save dialog, or is unable to open the save file. Unfortunately, this means the table cannot be saved. <LineBreak></LineBreak><LineBreak></LineBreak>
+					<Run FontSize="14" FontWeight="Medium">III. Back button is unresponsive</Run>  <LineBreak></LineBreak> <LineBreak></LineBreak>
+					This should not be happening. Go to the bottom of this section. <LineBreak></LineBreak><LineBreak></LineBreak>
+					<Run FontSize="14" FontWeight="Medium">IV. Python executable path is incorrect</Run>  <LineBreak></LineBreak> <LineBreak></LineBreak>
+					Make sure there are no trailing or leading spaces, brackets, or anything of the sort. Copy and paste the executable file's absolute path as it appears. <LineBreak></LineBreak><LineBreak></LineBreak>
+					If the issue still persists, go to the bottom of this section. <LineBreak></LineBreak><LineBreak></LineBreak>
+					<Run FontSize="14" FontWeight="Medium">V. Python executable path is not saved</Run>  <LineBreak></LineBreak> <LineBreak></LineBreak>
+					Check if the application folder contains a file by the name, "pythonexepath.txt". If not, add it. If the issue persists, go to the bottom of this section. <LineBreak></LineBreak><LineBreak></LineBreak>
+					<Run FontSize="14" FontWeight="Medium">VI. Error analysis failed</Run>  <LineBreak></LineBreak> <LineBreak></LineBreak>
+					This means the analysis had started, but ran into issues. To combat this, ensure that the local Python installation is at least v3.11, and that pandas and Biopython are installed and up to date.  <LineBreak></LineBreak><LineBreak></LineBreak>
+					Other possible reasons are if certain .gff and .fas files cannot be opened. Unfortunately, this means the application can't perform any analyses on them. <LineBreak></LineBreak><LineBreak></LineBreak>
+					<Run FontSize="14" FontWeight="Medium">VII. Application crash</Run>  <LineBreak></LineBreak> <LineBreak></LineBreak>
+					As was said earlier, this must not happen. <LineBreak></LineBreak> <LineBreak></LineBreak> <LineBreak></LineBreak>
+
+					<Run FontSize="15">Final Remarks</Run> <LineBreak></LineBreak><LineBreak></LineBreak>
+					It is entirely conceivable that the tool has quirks that are not documented in this page. <LineBreak></LineBreak><LineBreak></LineBreak>
+					Should the application deviate from expected behavior, the user has no choice but to contact the maintainer. The following Outlook address should work for the time being: <LineBreak></LineBreak><LineBreak></LineBreak>
+					<Run FontFamily="{StaticResource CourierFont}">sripadhanallurnatarajan.1@buckeyemail.osu.edu</Run>
+
+				</SelectableTextBlock>
+			</Expander>
+
+		</Grid>
+	</ScrollViewer>
+	
 </Window>

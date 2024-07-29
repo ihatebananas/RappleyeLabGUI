@@ -1,0 +1,4 @@
+C:\Users\itz_s\Desktop\RappleyeLabGUI Linux\RappleyeLabGUI.pdb
+C:\Users\itz_s\Desktop\RappleyeLabGUI Linux\libHarfBuzzSharp.so
+C:\Users\itz_s\Desktop\RappleyeLabGUI Linux\libSkiaSharp.so
+C:\Users\itz_s\Desktop\RappleyeLabGUI Linux\RappleyeLabGUI

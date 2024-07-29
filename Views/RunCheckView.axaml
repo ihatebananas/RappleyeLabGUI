@@ -8,6 +8,12 @@
 			 x:DataType="vm:RunCheckViewModel">
 
 	<UserControl.Styles>
+		<Style Selector="TextBox:not(:pointerover) /template/ TextBlock#PART_Watermark">
+			<Setter Property="Foreground" Value="White" />
+		</Style>
+		<Style Selector="TextBox:pointerover /template/ TextBlock#PART_Watermark">
+			<Setter Property="Foreground" Value="White" />
+		</Style>
 		<Style Selector="Label">
 			<Setter Property="FontFamily" Value="{StaticResource NunitoFont}"></Setter>
 			<Setter Property="Foreground" Value="Black"></Setter>

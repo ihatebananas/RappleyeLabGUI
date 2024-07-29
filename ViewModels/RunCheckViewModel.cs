@@ -1,5 +1,4 @@
 ﻿using ReactiveUI;
-using Python.Runtime;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +7,6 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Collections.ObjectModel;
 using System.Reactive;
-using Microsoft.CodeAnalysis.Scripting.Hosting;
 using System.Security.AccessControl;
 using Avalonia;
 using System.Reflection;
@@ -34,6 +32,7 @@ namespace RappleyeLabGUI.ViewModels
 
         public RunCheckViewModel(string gffDirectory, string fastaDirectory)
         {
+
             _canSave = false;
             _gffDir = gffDirectory;
             _fastaDir = fastaDirectory;
@@ -45,6 +44,7 @@ namespace RappleyeLabGUI.ViewModels
             _statusText = "";
 
             var lines = File.ReadAllLines("pythonexepath.txt");
+
             if (lines.Length > 0)
             {
                 _pythonExe = lines[0];
@@ -102,85 +102,100 @@ namespace RappleyeLabGUI.ViewModels
         // C:\Users\itz_s\AppData\Local\Programs\Python\Python311\python.exe
         public async void RunChecks()
         {
-            StatusText = "";
-            ProgressVal = 0;
-            CanRun = false;
-            CanBack = false;
-            CanSave = false;
-            CanEditTextBox = false;
-
-            string error_header = "filename,error_type,identifier,error_message";
-            File.WriteAllText("output_file.csv", error_header);
-
-            DirectoryInfo gffFolder = new DirectoryInfo(GffDir);
-            FileInfo[] gffFiles = gffFolder.GetFiles("*.gff");
-
-            int count = 0;
-            foreach (FileInfo gffFile in gffFiles)
+            try
             {
-                string result = await Task.Run(() => RunPython(gffFile.FullName));
-                if (result == "python exception raised")
+                StatusText = "";
+                ProgressVal = 0;
+                CanRun = false;
+                CanBack = false;
+                CanSave = false;
+                CanEditTextBox = false;
+
+                string error_header = "filename,error_type,identifier,error_message";
+                File.WriteAllText("output_file.csv", error_header);
+
+                DirectoryInfo gffFolder = new DirectoryInfo(GffDir);
+                FileInfo[] gffFiles = gffFolder.GetFiles("*.gff");
+
+                int count = 0;
+                foreach (FileInfo gffFile in gffFiles)
                 {
-                    StreamWriter outputWriter = new StreamWriter("output_file.csv", true);
+                    string result = await Task.Run(() => RunPython(gffFile.FullName));
+                    if (result == "python exception raised")
+                    {
+                        StreamWriter outputWriter = new StreamWriter("output_file.csv", true);
 
-                    outputWriter.Write("\n" + Path.GetFileName(gffFile.FullName) + ",Analysis,None,Error checks failed--see Help for possible reasons.");
+                        outputWriter.Write("\n" + Path.GetFileName(gffFile.FullName) + ",Analysis,None,Error checks failed--see Help for possible reasons.");
 
-                    outputWriter.Close();
+                        outputWriter.Close();
+                    }
+                    else if (result == "python exe filepath is incorrect")
+                    {
+                        StatusText = "python.exe path is incorrect";
+                        ProgressVal = 100;
+                        break;
+                    }
+
+                    count++;
+                    ProgressVal = (int)((count * 100) / gffFiles.Length);
+
                 }
-                else if (result == "python exe filepath is incorrect")
-                {
-                    StatusText = "python.exe path is incorrect";
-                    ProgressVal = 100;
-                    break;
-                }
 
-                count++;
-                ProgressVal = (int)((count * 100) / gffFiles.Length);
+                CanRun = true;
+                CanBack = true;
+                CanEditTextBox = true;
+
+                ChangeDataGrid("output_file.csv");
+            }
+            catch
+            {
 
             }
-
-            CanRun = true;
-            CanBack = true;
-            CanEditTextBox = true;
-
-            ChangeDataGrid("output_file.csv");
 
         }
 
         public void ChangeDataGrid(string filepath)
         {
-            StreamReader inputStream = new StreamReader(filepath);
-            var errorLines = new List<ErrorLine>();
-            inputStream.ReadLine();
-            int count = 1;
-            bool can_save = false;
-
-            while (!inputStream.EndOfStream)
+            try
             {
-                var line = inputStream.ReadLine();
-                if (line != null)
+                StreamReader inputStream = new StreamReader(filepath);
+                var errorLines = new List<ErrorLine>();
+                inputStream.ReadLine();
+                int count = 1;
+                bool can_save = false;
+
+                while (!inputStream.EndOfStream)
                 {
-                    var errorVals = line.Split(',');
-                    ErrorLine currError = new ErrorLine(count, errorVals[0], errorVals[1], errorVals[2], errorVals[3]);
-                    errorLines.Add(currError);
-                    count++;
+                    var line = inputStream.ReadLine();
+                    if (line != null)
+                    {
+                        var errorVals = line.Split(',');
+                        ErrorLine currError = new ErrorLine(count, errorVals[0], errorVals[1], errorVals[2], errorVals[3]);
+                        errorLines.Add(currError);
+                        count++;
 
-                    can_save = true;
+                        can_save = true;
+                    }
                 }
-            }
 
-            if (can_save)
+                if (can_save)
+                {
+                    CanSave = true;
+                }
+                else
+                {
+                    CanSave = false;
+                }
+
+                ErrorLines = new ObservableCollection<ErrorLine>(errorLines);
+
+                inputStream.Close();
+            }
+            catch
             {
-                CanSave = true;
-            }
-            else
-            {
-                CanSave = false;
-            }
 
-            ErrorLines = new ObservableCollection<ErrorLine>(errorLines);
-
-            inputStream.Close();
+            }
+            
         }
 
         public string GffDir

@@ -90,6 +90,8 @@ namespace RappleyeLabGUI.ViewModels
             }
 
             GffFeatures = new ObservableCollection<GFFFeature>(gfffeatures);
+
+            inputStream.Close();
         }
 
         public void GFFPreview()

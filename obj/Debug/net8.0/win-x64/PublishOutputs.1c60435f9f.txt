@@ -1,0 +1,5 @@
+C:\Users\itz_s\Desktop\TestAvaloniaProject\RappleyeLabGUI.pdb
+C:\Users\itz_s\Desktop\TestAvaloniaProject\av_libglesv2.dll
+C:\Users\itz_s\Desktop\TestAvaloniaProject\libHarfBuzzSharp.dll
+C:\Users\itz_s\Desktop\TestAvaloniaProject\libSkiaSharp.dll
+C:\Users\itz_s\Desktop\TestAvaloniaProject\RappleyeLabGUI.exe

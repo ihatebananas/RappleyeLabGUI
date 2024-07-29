@@ -141,6 +141,10 @@ namespace RappleyeLabGUI.Views
                     SaveStatusText.Foreground = redBrush;
                 }
             }
+
+            await Task.Delay(10000);
+
+            SaveStatusText.Text = "";
         }
     }
 }

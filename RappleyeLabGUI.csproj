@@ -7,15 +7,22 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
   </PropertyGroup>
-
+    
   <ItemGroup>
     <AvaloniaResource Include="Assets\**" />
+  </ItemGroup>
+    
+  <ItemGroup>
+    <None Remove="Assets\Fonts\CourierPrime-Bold.ttf" />
+    <None Remove="Assets\Fonts\CourierPrime-BoldItalic.ttf" />
+    <None Remove="Assets\Fonts\CourierPrime-Italic.ttf" />
+    <None Remove="Assets\Fonts\CourierPrime-Regular.ttf" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="bin\Debug\net8.0\pythonexepath.txt" />
   </ItemGroup>
-
+	
   <ItemGroup>
     <PackageReference Include="Avalonia" Version="11.0.10" />
     <PackageReference Include="Avalonia.Controls.DataGrid" Version="11.0.10" />
@@ -25,7 +32,6 @@
     <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
     <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.0.10" />
     <PackageReference Include="Avalonia.ReactiveUI" Version="11.0.10" />
-    <PackageReference Include="pythonnet" Version="3.0.3" />
   </ItemGroup>
 
   <ItemGroup>
