@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "DuEEfqG5ODMtSTRZhH/lEOhA51Rx6V4Fd0tGh+Elv5K08wuqkFsCu1z452Y28wUgFQoE9H3gfSr1L9RP8sKJvw==",
+  "dgSpecHash": "i0S5H2ncnoE54rZm/iIGTf/TfvJrF7kudLEx3a/9QpBNVks7UUd66uweE9jc+Jt+spbXrn7Zk95g/s0Ujs/oKA==",
   "success": true,
   "projectFilePath": "C:\\Users\\itz_s\\Desktop\\AvaloniaGUI\\RappleyeLabGUI\\RappleyeLabGUI.csproj",
   "expectedPackageFiles": [
@@ -106,6 +106,8 @@
     "C:\\Users\\itz_s\\.nuget\\packages\\system.threading.tasks\\4.3.0\\system.threading.tasks.4.3.0.nupkg.sha512",
     "C:\\Users\\itz_s\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512",
     "C:\\Users\\itz_s\\.nuget\\packages\\tmds.dbus.protocol\\0.15.0\\tmds.dbus.protocol.0.15.0.nupkg.sha512",
+    "C:\\Users\\itz_s\\.nuget\\packages\\microsoft.netcore.app.runtime.osx-x64\\8.0.4\\microsoft.netcore.app.runtime.osx-x64.8.0.4.nupkg.sha512",
+    "C:\\Users\\itz_s\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.osx-x64\\8.0.4\\microsoft.aspnetcore.app.runtime.osx-x64.8.0.4.nupkg.sha512",
     "C:\\Users\\itz_s\\.nuget\\packages\\microsoft.netcore.app.host.osx-x64\\8.0.4\\microsoft.netcore.app.host.osx-x64.8.0.4.nupkg.sha512"
   ],
   "logs": []

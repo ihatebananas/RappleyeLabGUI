@@ -1,0 +1,5 @@
+C:\Users\itz_s\Desktop\RappleyeLabGUI Windows\RappleyeLabGUI.pdb
+C:\Users\itz_s\Desktop\RappleyeLabGUI Windows\av_libglesv2.dll
+C:\Users\itz_s\Desktop\RappleyeLabGUI Windows\libHarfBuzzSharp.dll
+C:\Users\itz_s\Desktop\RappleyeLabGUI Windows\libSkiaSharp.dll
+C:\Users\itz_s\Desktop\RappleyeLabGUI Windows\RappleyeLabGUI.exe

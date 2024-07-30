@@ -81,7 +81,7 @@ namespace RappleyeLabGUI.ViewModels
                 if (line != null)
                 {
                     var featureVals = line.Split('\t');
-                    GFFFeature currFeature = new GFFFeature(count, featureVals[0], featureVals[1], featureVals[2], int.Parse(featureVals[3]), int.Parse(featureVals[4]), double.Parse(featureVals[5]), featureVals[6], featureVals[7], featureVals[8]);
+                    GFFFeature currFeature = new GFFFeature(count, featureVals[0], featureVals[1], featureVals[2], Convert.ToInt32(Math.Floor(Convert.ToDouble(featureVals[3]))), Convert.ToInt32(Math.Floor(Convert.ToDouble((featureVals[4])))), double.Parse(featureVals[5]), featureVals[6], featureVals[7], featureVals[8]);
                     gfffeatures.Add(currFeature);
 
                     count++;
