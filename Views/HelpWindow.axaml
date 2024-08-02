@@ -19,9 +19,25 @@
 					As of August, 2024, this tool will work with all Python versions 3.11 and later. <LineBreak></LineBreak> <LineBreak></LineBreak>
 
 					The following Python packages are required: <LineBreak></LineBreak><LineBreak></LineBreak>
-					<TabControl></TabControl>1. Pandas <LineBreak></LineBreak>
+					<TabControl></TabControl>1. pandas <LineBreak></LineBreak>
 					<TabControl></TabControl>2. Biopython <LineBreak></LineBreak> <LineBreak></LineBreak>
-					The most painless way to do this is to use Python's package installer, pip. In-depth guides may be found on the internet. 
+					The most painless way to do this is to use Python's package installer, pip. In-depth guides may be found on the internet. <LineBreak></LineBreak><LineBreak></LineBreak>
+					<Run FontWeight="Bold" FontStyle="Italic" FontFamily="{StaticResource CourierFont}">Optional, but helpful:</Run><LineBreak></LineBreak> <LineBreak></LineBreak>
+					It is common to "add Python to PATH", which can be done with the Python installer, or by using the Python executable on the local machine even after installation. <LineBreak></LineBreak><LineBreak></LineBreak>
+					After adding Python to PATH, running the commands: <LineBreak></LineBreak> <LineBreak></LineBreak>
+					<Border Background="Gainsboro" CornerRadius="5" Width="350">
+						<SelectableTextBlock Foreground="Black" Margin="10" FontSize="12" FontFamily="{StaticResource CourierFont}">
+							pip install pandas
+						</SelectableTextBlock>
+					</Border>
+					<LineBreak></LineBreak><LineBreak></LineBreak>
+					<Border Background="Gainsboro" CornerRadius="5" Width="350">
+						<SelectableTextBlock Foreground="Black" Margin="10" FontSize="12" FontFamily="{StaticResource CourierFont}">
+							pip install biopython
+						</SelectableTextBlock>
+					</Border> <LineBreak></LineBreak><LineBreak></LineBreak>
+					on the command line will successfully download Biopython and pandas. <LineBreak></LineBreak><LineBreak></LineBreak>
+					Furthermore, this also simplifies the entry of the Python executable absolute path in the second page of this application (see more in "How To").
 				</SelectableTextBlock>
 			</Expander>
 			<Expander Header="Conventions" VerticalAlignment="Top" HorizontalAlignment="Stretch" Grid.Row="1" Margin="2, 0, 2, 0">
@@ -62,6 +78,9 @@
 					<LineBreak></LineBreak><LineBreak></LineBreak>
 					
 					If the application displayed any behavior not aligning to the above directions, visit Troubleshoot. 
+					<LineBreak></LineBreak><LineBreak></LineBreak>
+					<Run FontFamily="{StaticResource CourierFont}" FontStyle="Italic" FontWeight="Bold">Additional remarks:</Run> <LineBreak></LineBreak><LineBreak></LineBreak>
+					If the user has added Python to PATH as mentioned in "Package Requirements", the user need not run a script to find the executable at all. Instead, try "python.exe", or "python3.exe" if the former doesn't work. 
 				</SelectableTextBlock>
 			</Expander>
 			<Expander Header="Errors Checked" VerticalAlignment="Top" HorizontalAlignment="Stretch" Grid.Row="3" Margin="2, 0, 2, 0">
@@ -77,7 +96,7 @@
 					- GFF table does not contain null values (outside of source, zeroes, dots). <LineBreak></LineBreak> <LineBreak></LineBreak>
 					- All annotated features must be one of "gene", "mRNA", "exon", or "CDS". <LineBreak></LineBreak> <LineBreak></LineBreak>
 					- All annotated directions must be one of "-", "+", ".". <LineBreak></LineBreak> <LineBreak></LineBreak>
-					- All annotated starts and stops must be numeric strings. Note that decimal points are not allowed in numeric strings. <LineBreak></LineBreak> <LineBreak></LineBreak> <LineBreak></LineBreak>
+					- All starts and stops must be string representations of integers. Note that values like, "100.0" are allowed, but not "100.5".<LineBreak></LineBreak> <LineBreak></LineBreak> <LineBreak></LineBreak>
 
 					<Bold>GFF Structure checks for the following criteria: </Bold><LineBreak></LineBreak><LineBreak></LineBreak>
 					- Feature overlaps. <LineBreak></LineBreak> <LineBreak></LineBreak>
@@ -94,8 +113,11 @@
 					- Start codon must be "ATG". <LineBreak></LineBreak> <LineBreak></LineBreak>
 					- Stop codon must be "TAG", "TAA", or "TGA". <LineBreak></LineBreak> <LineBreak></LineBreak>
 					- CDS annotation does not stop too late (that is, earlier valid stop codons exist). <LineBreak></LineBreak> <LineBreak></LineBreak>
-					- CDS does not have a partial codon (length is divisible by three). 
+					- CDS does not have a partial codon (length is divisible by three). <LineBreak></LineBreak><LineBreak></LineBreak>
 					
+					<LineBreak></LineBreak>
+			
+					The script checks if the files may be opened and if the naming conventions are followed, but they do not check for the single contig convention. 
 				</SelectableTextBlock>
 			</Expander>
 			<Expander Header="The Error Table" VerticalAlignment="Top" HorizontalAlignment="Stretch" Grid.Row="4" Margin="2, 0, 2, 0">
@@ -106,16 +128,22 @@
 					The <Bold>error type</Bold> is one of the four subdivisions of errors discussed in "Errors Checked". <LineBreak></LineBreak><LineBreak></LineBreak>
 					The <Bold>identifier</Bold> is a varying field that identifies where the error has occurred. The different kinds of identifiers are as follows:<LineBreak></LineBreak> <LineBreak></LineBreak>
 
-					- GFF Integrity errors have integer identifiers. These integers represent line numbers in the .gff file given by "filename". <LineBreak></LineBreak><LineBreak></LineBreak>
-					- GFF Structure errors also have integer identifiers, with the same purpose. <LineBreak></LineBreak><LineBreak></LineBreak>
+					- GFF Integrity identifiers are line numbers in the .gff file given by "filename". <LineBreak></LineBreak><LineBreak></LineBreak>
+					- GFF Structure identifiers represent the ID of the gene under which a structural error was found. <LineBreak></LineBreak><LineBreak></LineBreak>
 					- Splice Site error identifiers have the ID of the gene, and coordinates within which the error may be found. <LineBreak></LineBreak><LineBreak></LineBreak>
 					- CDS error identifiers have the contig name, and coordinates. <LineBreak></LineBreak><LineBreak></LineBreak>
 
-					- CDS error identifiers have the contig name, and coordinates. <LineBreak></LineBreak><LineBreak></LineBreak>
-					The <Bold>error message</Bold> is a more thorough description of the error. Here, the specific error found is explained. If the identifier is not descriptive enough, this is where the user may find details.  <LineBreak></LineBreak> <LineBreak></LineBreak> <LineBreak></LineBreak> <LineBreak></LineBreak>
+					The <Bold>error message</Bold> is a more thorough description of the error. Here, the specific error found is explained. If the identifier is not descriptive enough, this is where the user may find details. 
+					<LineBreak></LineBreak><LineBreak></LineBreak>
+					Some of the special ones are documented as follows: <LineBreak></LineBreak><LineBreak></LineBreak>
+					
+					- If the given .gff file could not be processed, it likely means the program was unable to open it, or otherwise unable to read its contents. <LineBreak></LineBreak><LineBreak></LineBreak>
+					- If the given .fas directory could not be processed, it likely means the corresponding .fas file to the given .gff file in "filename" could not be opened, or could not be found. See "Conventions" to check if naming conventions are followed. <LineBreak></LineBreak><LineBreak></LineBreak>
+					- If the error analysis has failed, see "Troubleshooting" for a subsection of the same name. 
+					<LineBreak></LineBreak> <LineBreak></LineBreak> <LineBreak></LineBreak> <LineBreak></LineBreak>
 
 					It is important to note that there is a pecking order to errors. Part of the reason for the division of errors is the preprocessing of data required, but it is largely also to screen for fundamental errors that prohibit further analysis. The order of errors as such is as presented in "Errors Checked".   <LineBreak></LineBreak> <LineBreak></LineBreak>
-					For example, if a GFF Integrity error is found, the program <Bold>will not run any more checks</Bold>. Thus, it is entirely conceivable that "new" errors pop up as the user fixes certain errors. 
+					For example, if a GFF Integrity error is found, the program <Bold>will not run any more checks</Bold>. Thus, it is possible that "new" errors pop up as the user fixes certain errors. 	
 				</SelectableTextBlock>
 			</Expander>
 			<Expander Header="Troubleshooting" VerticalAlignment="Top" HorizontalAlignment="Stretch" Grid.Row="5" Margin="2, 0, 2, 0">
@@ -137,7 +165,7 @@
 					The only known reason for this is that the .gff file selected cannot be opened. This is also an indication that the tool will not work as advertised, since the analysis depends on opening the .gff file. <LineBreak></LineBreak><LineBreak></LineBreak>
 					<Run FontSize="14" FontWeight="Medium">III. Continue button is unresponsive, or disabled</Run>  <LineBreak></LineBreak> <LineBreak></LineBreak>
 					The Continue button only enables after valid directories for both .fas and .gff files are entered. A valid directory for each is one that contains at least one file of the appropriate extension. <LineBreak></LineBreak><LineBreak></LineBreak>
-					If the Continue button is disabled even after both boxes on the left are non-empty, or if the Continue button is simple unresponsive, this breaks known behavior of the application. Go to the bottom of this section. <LineBreak></LineBreak><LineBreak></LineBreak>
+					If the Continue button is disabled even after both boxes on the left are non-empty, or if the Continue button is simply unresponsive, this breaks known behavior of the application. Go to the bottom of this section. <LineBreak></LineBreak><LineBreak></LineBreak>
 					<Run FontSize="14" FontWeight="Medium">IV. Application crash</Run>  <LineBreak></LineBreak> <LineBreak></LineBreak> 
 					This must not happen. Go to the bottom of this section. <LineBreak></LineBreak><LineBreak></LineBreak><LineBreak></LineBreak>
 
@@ -150,12 +178,13 @@
 					This should not be happening. Go to the bottom of this section. <LineBreak></LineBreak><LineBreak></LineBreak>
 					<Run FontSize="14" FontWeight="Medium">IV. Python executable path is incorrect</Run>  <LineBreak></LineBreak> <LineBreak></LineBreak>
 					Make sure there are no trailing or leading spaces, brackets, or anything of the sort. Copy and paste the executable file's absolute path as it appears. <LineBreak></LineBreak><LineBreak></LineBreak>
+					If the user has added Python to PATH, try changing "python.exe" to "python3.exe" or vice versa for the Python executable path.
 					If the issue still persists, go to the bottom of this section. <LineBreak></LineBreak><LineBreak></LineBreak>
 					<Run FontSize="14" FontWeight="Medium">V. Python executable path is not saved</Run>  <LineBreak></LineBreak> <LineBreak></LineBreak>
 					Check if the application folder contains a file by the name, "pythonexepath.txt". If not, add it. If the issue persists, go to the bottom of this section. <LineBreak></LineBreak><LineBreak></LineBreak>
 					<Run FontSize="14" FontWeight="Medium">VI. Error analysis failed</Run>  <LineBreak></LineBreak> <LineBreak></LineBreak>
 					This means the analysis had started, but ran into issues. To combat this, ensure that the local Python installation is at least v3.11, and that pandas and Biopython are installed and up to date.  <LineBreak></LineBreak><LineBreak></LineBreak>
-					Other possible reasons are if certain .gff and .fas files cannot be opened. Unfortunately, this means the application can't perform any analyses on them. <LineBreak></LineBreak><LineBreak></LineBreak>
+					If the user has added Python to PATH, try changing "python.exe" to "python3.exe" or vice versa for the Python executable path.  <LineBreak></LineBreak><LineBreak></LineBreak>
 					<Run FontSize="14" FontWeight="Medium">VII. Application crash</Run>  <LineBreak></LineBreak> <LineBreak></LineBreak>
 					As was said earlier, this must not happen. <LineBreak></LineBreak> <LineBreak></LineBreak> <LineBreak></LineBreak>
 

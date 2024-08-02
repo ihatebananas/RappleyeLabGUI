@@ -110,14 +110,13 @@ class StrandTypeValidator(Validator):
     def _generate_error_message(self, strand_type: str) -> None:
         self._error_message = f"{strand_type} is an invalid strand type"
 
-
 class BoundaryStartValidator(Validator):
 
     def __init__(self):
         super().__init__()        
     
     def check_element(self, element) -> bool:
-        boundary_start = element[3]
+        boundary_start = element[3].removesuffix(".0")
 
         if boundary_start.isnumeric():
             return True
@@ -126,7 +125,7 @@ class BoundaryStartValidator(Validator):
             return False
                
     def _generate_error_message(self, boundary_start: str) -> None:
-        self._error_message = f"start boundary value ({boundary_start}) is not numeric"
+        self._error_message = f"start boundary value ({boundary_start}) is not valid"
 
 
 class BoundaryEndValidator(Validator):
@@ -135,7 +134,7 @@ class BoundaryEndValidator(Validator):
         super().__init__()
     
     def check_element(self, element) -> bool:
-        boundary_end = element[4]
+        boundary_end = element[4].removesuffix(".0")
 
         if boundary_end.isnumeric():
             return True
@@ -144,8 +143,7 @@ class BoundaryEndValidator(Validator):
             return False
     
     def _generate_error_message(self, boundary_end: str) -> None:
-        self._error_message = f"end boundary value ({boundary_end}) is not numeric"
-
+        self._error_message = f"end boundary value ({boundary_end}) is not valid"
 
 
 #GFF STRUCTURE VALIDATORS

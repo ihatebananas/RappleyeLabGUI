@@ -27,8 +27,6 @@ cds_validator_chain = [[CDSStrandValidator()],
                     [CDSLengthValidator()]]
 
 def analyze_files(gff_path: Path, fas_dir: Path, error_dict: dict):
-    print(f"\n===========Analyzing {gff_path}===========\n")
-        
     #Creating chain
     cds_chain = CDSChain(None, gff_path, cds_validator_chain, fas_dir)
     intron_chain = IntronChain(cds_chain, gff_path, intron_validator_chain, fas_dir)

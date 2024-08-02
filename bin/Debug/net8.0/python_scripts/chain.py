@@ -58,7 +58,6 @@ class Chain:
         pass   
 
     def run_chain(self, error_dict: dict):
-        print(f"Running {self._chain_name}...")
         original_error_size = len(error_dict["filename"])
 
         request_list = self._preprocess_data()
@@ -66,11 +65,9 @@ class Chain:
             self._chain.handle(r, error_dict)
 
         if len(error_dict["filename"]) > original_error_size:
-            print (f"Exiting chain at {self._chain_name}")
             return error_dict
         
         elif self._next_chain is None:
-            print(f"Completed chain")
             return error_dict
         
         else:
@@ -91,8 +88,8 @@ class GFFIntegrityChain(Chain):
 
         #splitting each line in list_of_lines by delimitter which is "\t"
         for idx, line in enumerate(gff_lines):
-            request_list.append(Request(idx, line.split("\t")))
-
+            request_list.append(Request("Line " + str(idx + 1), line.split("\t")))
+            
         return request_list
     
     def _preprocess_data (self) -> list[Request]:
@@ -127,6 +124,7 @@ class GFFStructureChain(Chain):
 
         #preparing request object to be passed on to handlers
         request_list = []
+        gene_attribute_list = list(genes["attributes"])
 
         for gene_id in range(genes.shape[0]):
             #FIXME: make body of for loop into a separate function
@@ -141,7 +139,7 @@ class GFFStructureChain(Chain):
             curr_gene = cls._get_child_records(genes, curr_gene)
 
             #creating request object
-            curr_request = Request(gene_id, (curr_gene, curr_mRNA, curr_exon, curr_cds))
+            curr_request = Request(gene_attribute_list[gene_id], (curr_gene, curr_mRNA, curr_exon, curr_cds))
 
             request_list.append(curr_request)
         return request_list

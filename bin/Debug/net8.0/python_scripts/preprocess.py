@@ -83,5 +83,7 @@ class DataPreprocessor:
     def preprocess_gff(cls, file_path: str):
         gff = cls._read_gff_into_df(file_path)
         gff = cls._change_attributes_to_ids(gff)
+        gff["start"] = gff["start"].apply(lambda x: int(x))
+        gff["end"] = gff["end"].apply(lambda x: int(x))
 
         return gff
